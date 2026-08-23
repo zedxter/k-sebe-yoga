@@ -12,18 +12,19 @@
 - Questions / sign-up: [write in Telegram](https://t.me/Yulia_yoga_innere_balance)
 - CTA on the page: **«По всем вопросам пишите в Telegram»** → link to that t.me.
 
-## Stack (TBD — keep minimal)
-Single-page static site. Suggested: plain HTML/CSS or a light static generator. No backend needed.
+## Stack
+Single-page static site: plain HTML + CSS, no backend.
 
 ## Structure
 ```
 k-sebe-yoga/
-├── README.md       ← this file
-└── (site files TBD once copy arrives)
+├── index.html   ← the landing (cover hero + Russian copy + t.me CTA)
+├── cover.jpg    ← hero cover image
+└── README.md    ← this file
 ```
 
 ## What it should feel like
-Warm, from the heart, not a corporate fitness page. First screen: cover image + a short invitation to come breathe together, outside, in Potsdamn.
+Warm, from the heart, not a corporate fitness page. First screen: cover image + a short invitation to come breathe together, outside, in Potsdam.
 
 ## Links
 - GitHub: https://github.com/zedxter/k-sebe-yoga
