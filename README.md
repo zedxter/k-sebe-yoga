@@ -6,7 +6,11 @@
 
 ## Status
 - **Active** since 2026-08-23. Registry row: `projects/projects.md` (vault).
-- Iteration 1: hero cover header + intro text (text comes from Daniil next; structure being locked).
+- Iteration 1: hero cover header + intro text (text came from Daniil 23.08). Structure being locked.
+
+## Contact / CTA
+- Yulia on Telegram: `@Yulia_yoga_innere_balance` → `https://t.me/Yulia_yoga_innere_balance`
+- CTA on the page: **«Напиши Юле в личку»** → link to that t.me.
 
 ## Stack (TBD — keep minimal)
 Single-page static site. Suggested: plain HTML/CSS or a light static generator. No backend needed.
