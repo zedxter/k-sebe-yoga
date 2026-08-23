@@ -24,7 +24,7 @@
   /* Шапка с обложкой: картинка как <img> в полную ширину и по пропорциям, ничего не режется */
   header{
     position:relative;
-    max-width:620px;
+    max-width:1200px; /* лендскейп-обложка: широкий hero без пустых полей */
     margin:0 auto;
   }
   .hero-img{
@@ -117,6 +117,12 @@
     transition:transform .15s, box-shadow .15s;
   }
   .cta:hover{transform:translateY(-2px);box-shadow:0 7px 20px rgba(232,169,160,0.6);}
+  /* Кнопка в шапке (hero) компактнее, чтобы не съедала первый экран */
+  .hero-cap .cta{
+    margin-top:0.9rem;
+    padding:0.75rem 1.4rem;
+    font-size:0.95rem;
+  }
   .closing{
     text-align:center;
     font-size:1.15rem;
@@ -142,10 +148,15 @@
 <body>
 
 <header>
-  <img class="hero-img" src="/k-sebe-yoga/cover.jpg" alt="Йога — возвращение к себе" />
+  <picture class="hero-img">
+    <img class="hero-img" src="cover-v2.jpg"
+      srcset="cover-v2-mobile.jpg 640w, cover-v2.jpg 1280w"
+      sizes="100vw" alt="Йога — возвращение к себе" />
+  </picture>
   <div class="hero-cap">
     <h1>А что, если йога — это не только про тело?</h1>
     <div class="hero-sub">Небольшая бесплатная группа · пространство для возвращения к себе</div>
+    <a class="cta" href="https://t.me/Yulia_yoga_innere_balance">Написать в Telegram</a>
   </div>
 </header>
 
