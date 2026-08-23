@@ -27,20 +27,29 @@
     color:var(--brown);
     line-height:1.7;
   }
-  /* Шапка с обложкой: картинка — <img> полноширинно в мягкой карточке.
-     Загнутое дно и тёплый светящийся край «вплавляют» фото в страницу. */
+  /* Шапка с обложкой edge-to-edge: картинка во всю ширину окна, без боковых полей и рамки.
+     Тёплая лента страницы и «мостик» внизу вплавляют фото в ту же тёплую историю, что и контент. */
   header{
     position:relative;
-    max-width:1120px;      /* чуть уже страницы-холста — дышит по краям */
-    margin:0 auto;
-    border-radius:0 0 44px 44px;
+    width:100%;
     overflow:hidden;
-    box-shadow:0 26px 70px -22px rgba(195,140,95,.42);
   }
+  /* Обложка: на мобиле бьётся в естественную 16:9 (низкая, компактная, без кропа).
+     На десктопе широкая лента: высоту ограничиваем и кадрируем по вертикали (объект не теряется),
+     чтобы всю ширину не раздуть в гигантскую полосу. */
   .hero-img{
     display:block;
     width:100%;
     height:auto;
+    object-fit:cover;
+    object-position:center 30%;
+  }
+  @media(min-width:720px){
+    .hero-img{
+      height:clamp(360px, 44vh, 560px);
+      object-fit:cover;
+      object-position:center 28%;
+    }
   }
   .hero-cap{
     position:absolute;
