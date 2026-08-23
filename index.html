@@ -3,64 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Йога — возвращение к себе · Ruinenberg, Potsdam</title>
-<meta name="description" content="Бесплатные уличные занятия йогой для женщин в Потсдаме. Возвращение к себе: движение, дыхание, внимание к себе. Первая встреча 30 августа в 7:00, Ruinenberg.">
+<title>Йога — возвращение к себе · Potsdam</title>
+<meta name="description" content="Бесплатные уличные занятия йогой для женщин в Потсдаме. Возвращение к себе: движение, дыхание, внимание к себе. Тёплая практика в парке, не фитнес.">
 <style>
   :root{
     --cream:#faf5ee;      /* фон */
     --peach:#f2c9a3;      /* акцент */
     --rose:#e8a9a0;       /* эмоция */
     --brown:#3e2f27;      /* текст, контраст */
-    --gold:#d9a25f;       /* золотой свет */
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
+  html,body{overflow-x:hidden;width:100%;}
   body{
     font-family:Georgia,'Times New Roman',serif;
     background:var(--cream);
     color:var(--brown);
     line-height:1.7;
   }
-  /* Шапка с обложкой */
+  /* Шапка с обложкой — колонка, ничего не сжимается в строку */
   header{
     position:relative;
-    min-height:78vh;
+    min-height:72vh;
     display:flex;
-    align-items:flex-end;
-    justify-content:center;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-end;
     text-align:center;
     color:#fff;
     background:linear-gradient(to bottom,rgba(62,47,39,0.15),rgba(62,47,39,0.55)),url('cover.jpg') center/cover no-repeat;
-    padding:2rem 1rem 3rem;
+    padding:2rem 1.2rem 3rem;
+    width:100%;
   }
   header h1{
-    font-size:clamp(1.8rem,5vw,3.2rem);
+    font-size:clamp(1.7rem,6vw,3rem);
     font-weight:normal;
     font-style:italic;
     text-shadow:0 2px 12px rgba(0,0,0,0.45);
-    max-width:23ch;
+    max-width:18ch;
+    width:100%;
+    line-height:1.25;
   }
   .hero-sub{
-    margin-top:0.8rem;
-    font-size:clamp(1rem,2.6vw,1.3rem);
+    margin-top:0.9rem;
+    font-size:clamp(1rem,3.2vw,1.25rem);
     text-shadow:0 1px 8px rgba(0,0,0,0.5);
-  }
-  .hero-event{
-    margin-top:1.2rem;
-    font-size:1.05rem;
-    background:rgba(0,0,0,0.32);
-    display:inline-block;
-    padding:0.5rem 1.2rem;
-    border-radius:999px;
-    text-shadow:none;
+    max-width:32ch;
   }
   main{
     max-width:760px;
     margin:0 auto;
-    padding:2.5rem 1.5rem 4rem;
+    padding:2.5rem 1.2rem 4rem;
   }
   .lead{
-    font-size:1.25rem;
+    font-size:1.22rem;
     font-style:italic;
     text-align:center;
     color:var(--brown);
@@ -69,7 +65,7 @@
   .manifesto{
     background:#fff7ee;
     border-left:5px solid var(--peach);
-    padding:1.6rem 1.8rem;
+    padding:1.4rem 1.4rem;
     margin:2rem 0;
     border-radius:0 14px 14px 0;
     font-size:1.12rem;
@@ -77,7 +73,7 @@
   .manifesto .item{display:block;margin:0.35rem 0;}
   section{margin:2.2rem 0;}
   h2{
-    font-size:1.4rem;
+    font-size:1.35rem;
     font-weight:normal;
     font-style:italic;
     color:var(--brown);
@@ -85,46 +81,33 @@
     border-bottom:2px solid var(--peach);
     padding-bottom:0.3rem;
   }
-  .event-card{
-    background:#fff7ee;
-    border:1px solid var(--peach);
-    border-radius:16px;
-    padding:1.4rem 1.6rem;
-    margin:1.5rem 0;
+  ul.check{list-style:none;margin-top:0.6rem;}
+  ul.check li{margin:0.4rem 0;}
+  .notes{
+    background:#fff1e5;
+    border-radius:14px;
+    padding:1.4rem 1.4rem;
+    margin:2rem 0;
     text-align:center;
   }
-  .event-card .date{font-size:1.3rem;font-weight:bold;}
-  .event-card small{display:block;color:#6b5443;margin-top:0.4rem;}
+  .notes p{margin:0.6rem 0;}
   .cta{
-    display:inline-block;
-    margin-top:1.2rem;
+    display:block;
+    width:100%;
+    max-width:340px;
+    margin:1.2rem auto 0;
+    text-align:center;
     background:var(--rose);
     color:#fff;
     text-decoration:none;
     font-family:sans-serif;
     font-size:1.05rem;
-    padding:0.85rem 1.9rem;
+    padding:0.9rem 1.5rem;
     border-radius:999px;
     box-shadow:0 4px 14px rgba(232,169,160,0.5);
     transition:transform .15s, box-shadow .15s;
   }
   .cta:hover{transform:translateY(-2px);box-shadow:0 7px 20px rgba(232,169,160,0.6);}
-  ul.check{
-    list-style:none;
-    margin-top:0.6rem;
-  }
-  ul.check li{margin:0.4rem 0;}
-  .note{
-    font-size:0.95rem;
-    color:#5d4a3c;
-    margin-top:0.5rem;
-  }
-  .notes{
-    background:#fff1e5;
-    border-radius:14px;
-    padding:1.2rem 1.5rem;
-    margin:2rem 0;
-  }
   .closing{
     text-align:center;
     font-size:1.15rem;
@@ -139,9 +122,11 @@
     color:#8a7564;
     border-top:1px solid var(--peach);
   }
-  @media(max-width:520px){
-    header{min-height:62vh;}
-    .event-card .date{font-size:1.12rem;}
+  @media(max-width:480px){
+    header{min-height:60vh;}
+    main{padding:2rem 1rem 3rem;}
+    .manifesto{padding:1.2rem 1.1rem;}
+    .notes{padding:1.2rem 1rem;}
   }
 </style>
 </head>
@@ -150,7 +135,6 @@
 <header>
   <h1>А что, если йога — это не только про тело?</h1>
   <div class="hero-sub">Небольшая бесплатная группа · пространство для возвращения к себе</div>
-  <div class="hero-event">🌅 Первая встреча — 30 августа, 7:00 · Ruinenberg, Potsdam</div>
 </header>
 
 <main>
@@ -171,38 +155,26 @@
   </section>
 
   <section>
-    <div class="event-card">
-      <div class="date">🌅 Первая встреча — 30 августа, 7:00</div>
-      <div>📍 Ruinenberg, Potsdam</div>
-      <small>⏱ 40–50 минут · 💰 бесплатно</small>
-      <a class="cta" href="https://t.me/Yulia_yoga_innere_balance">По всем вопросам — в Telegram</a>
-      <small>Встречаемся у входа в парк Ruinenberg (детали места пришлю после записи)</small>
-    </div>
+    <h2>Что это за практика</h2>
+    <p>Тёплая уличная йога на воздухе — через движение, дыхание и внимание к себе. Каждая практика посвящена теме: желаниям, самоощущению, уверенности, внутренней силе, женской энергии, творчеству и своим природным способностям.</p>
   </section>
 
   <section>
-    <h2>Почему так рано?</h2>
-    <p>Потому что я хочу начать день с себя ☀️ Приходи, чтобы в тихом утреннем городе замедлиться, почувствовать своё тело и настроиться на себя — до того, как начнётся привычный ритм дня.</p>
-  </section>
-
-  <section>
-    <h2>С собой</h2>
+    <h2>Что пригодится</h2>
     <ul class="check">
       <li>🧘‍♀️ коврик для йоги</li>
       <li>👕 удобная одежда</li>
       <li>💧 вода</li>
-      <li>☀️ утренний настрой — он уже есть у тебя</li>
+      <li>☀️ хорошее настроение — а оно уже есть у тебя</li>
     </ul>
   </section>
 
   <div class="notes">
-    <p>💧 Если в день встречи будет дождь — перенесём и напишем в личку.</p>
-    <p>🗓️ Напиши до 29 августа, чтобы я прислала точное место.</p>
-    <p class="note">✉️ По всем вопросам и записи пишите в Telegram.</p>
-    <a class="cta" href="https://t.me/Yulia_yoga_innere_balance">Написать в Telegram</a>
+    <p>✉️ О дате ближайшей встречи и деталях — пишите в Telegram.</p>
+    <a class="cta" href="https://t.me/Yulia_yoga_innere_balance">По всем вопросам — в Telegram</a>
   </div>
 
-  <p class="closing">Возможно, именно с этой встречи начнётся твоё новое знакомство с собой 🌅</p>
+  <p class="closing">Возможно, с этой встречи начнётся твоё новое знакомство с собой 🌅</p>
 
 </main>
 
