@@ -7,25 +7,35 @@
 <meta name="description" content="Бесплатные уличные занятия йогой для женщин в Потсдаме. Возвращение к себе: движение, дыхание, внимание к себе. Тёплая практика в парке, не фитнес.">
 <style>
   :root{
-    --cream:#faf5ee;      /* фон */
+    --cream:#faf5ee;      /* низ страницы — спокойный крем */
+    --bg1:#f9e6d3;        /* верх — тёплый тон, тянется от шапки */
+    --bg2:#f7edd9;        /* середина — медовый */
     --peach:#f2c9a3;      /* акцент */
-    --rose:#e8a9a0;       /* эмоция */
-    --brown:#3e2f27;      /* текст, контраст */
+    --rose:#e08a6f;       /* эмоция (чуть глубже, чтобы кнопка читалась) */
+    --brown:#4b372b;      /* текст, контраст */
+    --card:#fdeee0;       /* тёплая подложка карточек */
+    --cardhot:#fbdcbf;    /* акцентная карточка */
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
   html,body{overflow-x:hidden;width:100%;}
   body{
     font-family:Georgia,'Times New Roman',serif;
-    background:var(--cream);
+    /* Вся страница — тёплая лента: персик наверху плавно уходит в крем вниз.
+       Так шапка-фото и контент живут в одном цветовом поле, а не на белом холсте. */
+    background:linear-gradient(180deg,var(--bg1) 0%,var(--bg2) 40%,var(--cream) 100%);
     color:var(--brown);
     line-height:1.7;
   }
-  /* Шапка с обложкой: картинка как <img> в полную ширину и по пропорциям, ничего не режется */
+  /* Шапка с обложкой: картинка — <img> полноширинно в мягкой карточке.
+     Загнутое дно и тёплый светящийся край «вплавляют» фото в страницу. */
   header{
     position:relative;
-    max-width:1200px; /* лендскейп-обложка: широкий hero без пустых полей */
+    max-width:1120px;      /* чуть уже страницы-холста — дышит по краям */
     margin:0 auto;
+    border-radius:0 0 44px 44px;
+    overflow:hidden;
+    box-shadow:0 26px 70px -22px rgba(195,140,95,.42);
   }
   .hero-img{
     display:block;
@@ -35,24 +45,31 @@
   .hero-cap{
     position:absolute;
     left:0; right:0; bottom:0;
-    padding:1.5rem 1.2rem 1.8rem;
+    padding:1.5rem 1.2rem 1.9rem;
     text-align:center;
     color:#fff;
-    background:linear-gradient(to top,rgba(62,47,39,0.95),rgba(62,47,39,0));
+    background:linear-gradient(to top, rgba(75,55,43,.86), rgba(75,55,43,0));
   }
   .hero-cap h1{
-    font-size:clamp(1.5rem,5vw,2.6rem);
+    font-size:clamp(1.5rem,5vw,2.55rem);
     font-weight:normal;
     font-style:italic;
-    text-shadow:0 1px 10px rgba(0,0,0,0.45);
+    text-shadow:0 1px 10px rgba(0,0,0,.38);
     line-height:1.25;
   }
   .hero-sub{
     margin-top:0.6rem;
-    font-size:clamp(0.95rem,3vw,1.05rem);
-    text-shadow:0 1px 6px rgba(0,0,0,0.5);
-    max-width:32ch;
+    font-size:clamp(.95rem,3vw,1.05rem);
+    text-shadow:0 1px 6px rgba(0,0,0,.45);
+    max-width:34ch;
     margin-left:auto;margin-right:auto;
+  }
+  /* Мостик от шапки к контенту: мягкая тёплая полоска, что гасит резкий стык. */
+  .bridge{
+    height:26px;
+    background:linear-gradient(to bottom, rgba(248,225,205,.85), rgba(241,237,217,0));
+    margin-top:-26px;
+    pointer-events:none;
   }
   main{
     max-width:760px;
@@ -66,16 +83,23 @@
     color:var(--brown);
     margin-bottom:2rem;
   }
+  /* Контент живёт не на белом, а на тёплом кремовом листе. */
+  .content{
+    background:linear-gradient(180deg,var(--cream) 0%, #fdf6ea 100%);
+    border-radius:26px;
+    padding:2.2rem 2rem;
+    box-shadow:0 18px 46px -20px rgba(160,110,80,.18);
+  }
   .manifesto{
-    background:#fff7ee;
+    background:var(--card);
     border-left:5px solid var(--peach);
-    padding:1.4rem 1.4rem;
+    padding:1.5rem 1.5rem;
     margin:2rem 0;
-    border-radius:0 14px 14px 0;
+    border-radius:0 16px 16px 0;
     font-size:1.12rem;
   }
   .manifesto .item{display:block;margin:0.35rem 0;}
-  section{margin:2.2rem 0;}
+  section{margin:2.1rem 0;}
   h2{
     font-size:1.35rem;
     font-weight:normal;
@@ -93,11 +117,13 @@
     line-height:1.8;
   }
   .notes{
-    background:#fff1e5;
-    border-radius:14px;
-    padding:1.4rem 1.4rem;
+    background:var(--card);
+    border:1px solid rgba(232,169,160,.45);
+    border-radius:16px;
+    padding:1.6rem 1.5rem;
     margin:2rem 0;
     text-align:center;
+    box-shadow:0 14px 34px -22px rgba(210,130,100,.25);
   }
   .notes p{margin:0.6rem 0;}
   .cta{
@@ -113,10 +139,10 @@
     font-size:1.05rem;
     padding:0.9rem 1.5rem;
     border-radius:999px;
-    box-shadow:0 4px 14px rgba(232,169,160,0.5);
+    box-shadow:0 4px 14px rgba(224,138,111,.44);
     transition:transform .15s, box-shadow .15s;
   }
-  .cta:hover{transform:translateY(-2px);box-shadow:0 7px 20px rgba(232,169,160,0.6);}
+  .cta:hover{transform:translateY(-2px);box-shadow:0 7px 20px rgba(224,138,111,.5);}
   /* Кнопка в шапке (hero) компактнее, чтобы не съедала первый экран */
   .hero-cap .cta{
     margin-top:0.9rem;
@@ -134,14 +160,17 @@
     text-align:center;
     padding:1.5rem;
     font-size:0.85rem;
-    color:#8a7564;
+    color:#9c8774;
     border-top:1px solid var(--peach);
+    background:linear-gradient(180deg,var(--bg2),var(--cream));
   }
   @media(max-width:480px){
-    main{padding:2rem 1rem 3rem;}
+    main{padding:1.8rem 1rem 3rem;}
+    .content{padding:1.6rem 1.1rem;}
     .manifesto{padding:1.2rem 1.1rem;}
     .notes{padding:1.2rem 1rem;}
-    .hero-cap{padding:1.2rem 1rem 1.4rem;}
+    .hero-cap{padding:1.1rem 1rem 1.5rem;}
+    header{border-radius:0 0 30px 30px;}
   }
 </style>
 </head>
@@ -159,6 +188,9 @@
     <a class="cta" href="https://t.me/Yulia_yoga_innere_balance">Написать в Telegram</a>
   </div>
 </header>
+<div class="bridge"></div>
+
+<div class="content">
 
 <main>
 
@@ -209,6 +241,8 @@
   <p class="closing">Возможно, именно с этой встречи начнётся твоё новое знакомство с собой 🌅</p>
 
 </main>
+
+</div>
 
 <footer>Йога — «возвращение к себе» · Potsdam</footer>
 
