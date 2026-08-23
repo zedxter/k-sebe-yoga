@@ -21,34 +21,38 @@
     color:var(--brown);
     line-height:1.7;
   }
-  /* Шапка с обложкой — колонка, ничего не сжимается в строку */
+  /* Шапка с обложкой: картинка как <img> в полную ширину и по пропорциям, ничего не режется */
   header{
     position:relative;
-    min-height:72vh;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:flex-end;
+    max-width:620px;
+    margin:0 auto;
+  }
+  .hero-img{
+    display:block;
+    width:100%;
+    height:auto;
+  }
+  .hero-cap{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    padding:1.5rem 1.2rem 1.8rem;
     text-align:center;
     color:#fff;
-    background:linear-gradient(to bottom,rgba(62,47,39,0.15),rgba(62,47,39,0.55)),url('/k-sebe-yoga/cover.jpg') center/cover no-repeat;
-    padding:2rem 1.2rem 3rem;
-    width:100%;
+    background:linear-gradient(to top,rgba(62,47,39,0.95),rgba(62,47,39,0));
   }
-  header h1{
-    font-size:clamp(1.7rem,6vw,3rem);
+  .hero-cap h1{
+    font-size:clamp(1.5rem,5vw,2.6rem);
     font-weight:normal;
     font-style:italic;
-    text-shadow:0 2px 12px rgba(0,0,0,0.45);
-    max-width:18ch;
-    width:100%;
+    text-shadow:0 1px 10px rgba(0,0,0,0.45);
     line-height:1.25;
   }
   .hero-sub{
-    margin-top:0.9rem;
-    font-size:clamp(1rem,3.2vw,1.25rem);
-    text-shadow:0 1px 8px rgba(0,0,0,0.5);
+    margin-top:0.6rem;
+    font-size:clamp(0.95rem,3vw,1.05rem);
+    text-shadow:0 1px 6px rgba(0,0,0,0.5);
     max-width:32ch;
+    margin-left:auto;margin-right:auto;
   }
   main{
     max-width:760px;
@@ -128,18 +132,21 @@
     border-top:1px solid var(--peach);
   }
   @media(max-width:480px){
-    header{min-height:60vh;}
     main{padding:2rem 1rem 3rem;}
     .manifesto{padding:1.2rem 1.1rem;}
     .notes{padding:1.2rem 1rem;}
+    .hero-cap{padding:1.2rem 1rem 1.4rem;}
   }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>А что, если йога — это не только про тело?</h1>
-  <div class="hero-sub">Небольшая бесплатная группа · пространство для возвращения к себе</div>
+  <img class="hero-img" src="/k-sebe-yoga/cover.jpg" alt="Йога — возвращение к себе" />
+  <div class="hero-cap">
+    <h1>А что, если йога — это не только про тело?</h1>
+    <div class="hero-sub">Небольшая бесплатная группа · пространство для возвращения к себе</div>
+  </div>
 </header>
 
 <main>
