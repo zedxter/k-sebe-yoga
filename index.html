@@ -32,41 +32,54 @@
     -webkit-font-smoothing:antialiased;
   }
 
-  /* ---------- Hero: двуколоночный, фото фигурой целиком ---------- */
-  .wrap{max-width:1080px;margin:0 auto;padding:0 1.4rem;}
+  /* ---------- Hero: полноширинный, обложка на всю длину, текст оверлеем сверху ---------- */
   .hero{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:3rem;
+    position:relative;
+    width:100%;
+    min-height:100vh;
+    display:flex;
     align-items:center;
-    padding:5rem 0 4rem;
-  }
-  .hero-photo{
+    justify-content:center;
     overflow:hidden;
-    border-radius:14px;
-    box-shadow:0 30px 60px -34px rgba(130,85,55,.28);
   }
-  .hero-photo img{
-    display:block;
+  .hero-img{
+    position:absolute;
+    inset:0;
     width:100%;
     height:100%;
-    min-height:420px;
-    max-height:640px;
     object-fit:cover;
-    object-position:center top;
+    object-position:center 20%;
+  }
+  /* Градиент-оверлей: затемнение внизу и с краёв, чтобы текст читался на любом фото */
+  .hero-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to top, rgba(75,55,43,.74), rgba(75,55,43,0) 55%),
+               linear-gradient(to bottom, rgba(75,55,43,.35), rgba(75,55,43,0) 30%);
+    pointer-events:none;
+  }
+  .hero-copy{
+    position:relative;
+    z-index:2;
+    max-width:720px;
+    padding:0 1.5rem;
+    text-align:center;
+    color:#fff;
   }
   .hero-copy h1{
     font-family:var(--serif);
     font-weight:500;
-    font-size:clamp(2rem,4.6vw,3.4rem);
+    font-size:clamp(2rem,5vw,3.6rem);
     line-height:1.12;
     letter-spacing:-0.01em;
-    margin-bottom:1.2rem;
+    margin-bottom:1.1rem;
+    text-shadow:0 2px 18px rgba(0,0,0,.35);
   }
   .hero-sub{
-    color:var(--muted);
-    font-size:1.08rem;
-    margin-bottom:2rem;
+    color:rgba(255,255,255,.92);
+    font-size:1.1rem;
+    margin-bottom:1.8rem;
+    text-shadow:0 1px 8px rgba(0,0,0,.3);
   }
   .btn{
     display:inline-block;
@@ -156,23 +169,21 @@
 
   /* ---------- Мобильная адаптивность ---------- */
   @media(max-width:720px){
-    .hero{grid-template-columns:1fr;gap:1.8rem;padding:2.2rem 0 0;}
-    .hero-photo img{aspect:auto;max-height:none;min-height:0;}
-    .hero-copy{padding:0 0.4rem;}
-    main{padding-top:2rem;}
-    .hero-copy h1{text-align:center;}
+    .hero{min-height:92vh;}
+    .hero-copy{padding:0 1.1rem;}
+    .hero-copy h1{text-align:center;font-size:clamp(1.65rem,6.5vw,2.4rem);}
     .hero-sub{text-align:center;}
-    .btn{display:block;max-width:340px;margin:0 auto;text-align:center;}
+    .btn{display:block;width:100%;max-width:330px;margin:0 auto;text-align:center;}
+    main{padding-top:2rem;}
     .lead{text-align:center;}
   }
 </style>
 </head>
 <body>
 
-<div class="hero win wrap">
-  <div class="hero-photo">
-    <img src="/k-sebe-yoga/hero.jpg" alt="Йога — возвращение к себе" />
-  </div>
+<div class="hero">
+  <img class="hero-img" src="/k-sebe-yoga/hero.jpg" alt="Йога — возвращение к себе" />
+  <div class="hero-overlay"></div>
   <div class="hero-copy">
     <h1>А что, если йога — это не только про&nbsp;тело?</h1>
     <div class="hero-sub">Небольшая бесплатная группа · пространство для возвращения к себе</div>
