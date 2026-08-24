@@ -32,11 +32,11 @@
     -webkit-font-smoothing:antialiased;
   }
 
-  /* ---------- Hero: полноширинный, обложка на всю длину, текст оверлеем сверху ---------- */
+  /* ---------- Hero: полноширинный, компактный — контент ниже выглядывает ---------- */
   .hero{
     position:relative;
     width:100%;
-    min-height:100vh;
+    min-height:72vh;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -48,7 +48,7 @@
     width:100%;
     height:100%;
     object-fit:cover;
-    object-position:center 20%;
+    object-position:center 22%;
   }
   /* Градиент-оверлей: затемнение внизу и с краёв, чтобы текст читался на любом фото */
   .hero-overlay{
@@ -69,16 +69,16 @@
   .hero-copy h1{
     font-family:var(--serif);
     font-weight:500;
-    font-size:clamp(2rem,5vw,3.6rem);
+    font-size:clamp(2.1rem,5.2vw,3.7rem);
     line-height:1.12;
     letter-spacing:-0.01em;
-    margin-bottom:1.1rem;
+    margin-bottom:1rem;
     text-shadow:0 2px 18px rgba(0,0,0,.35);
   }
   .hero-sub{
     color:rgba(255,255,255,.92);
     font-size:1.1rem;
-    margin-bottom:1.8rem;
+    margin-bottom:1.6rem;
     text-shadow:0 1px 8px rgba(0,0,0,.3);
   }
   .btn{
@@ -95,6 +95,29 @@
     transition:transform .15s, box-shadow .15s;
   }
   .btn:hover{transform:translateY(-2px);box-shadow:0 16px 30px -16px rgba(201,129,83,.6);}
+  /* Строчка доверия под CTA (паттерн успешных лендингов: trust signal у первого CTA) */
+  .hero-trust{
+    margin-top:1.2rem;
+    color:rgba(255,255,255,.85);
+    font-size:0.95rem;
+    font-family:var(--sans);
+    text-shadow:0 1px 6px rgba(0,0,0,.3);
+  }
+  /* Скролл-намек: лёгкий шеврон внизу героя, говорит «контент ниже» */
+  .scroll-hint{
+    position:absolute;
+    left:0;right:0;bottom:1.1rem;
+    text-align:center;
+    color:rgba(255,255,255,.75);
+    font-size:1.35rem;
+    animation:scrollbob 2s infinite;
+    pointer-events:none;
+    z-index:3;
+  }
+  @keyframes scrollbob{
+    0%,100%{transform:translateY(0);opacity:.7}
+    50%{transform:translateY(6px);opacity:1}
+  }
 
   /* ---------- Контент ---------- */
   main{max-width:720px;margin:0 auto;padding:0 1.4rem 4.5rem;}
@@ -169,12 +192,15 @@
 
   /* ---------- Мобильная адаптивность ---------- */
   @media(max-width:720px){
-    .hero{min-height:92vh;}
+    /* На мобиле hero = фото-лента + текст, НЕ во весь экран — контент виден сразу */
+    .hero{min-height:0;}
+    .hero{aspect-ratio:4/5;}
     .hero-copy{padding:0 1.1rem;}
-    .hero-copy h1{text-align:center;font-size:clamp(1.65rem,6.5vw,2.4rem);}
-    .hero-sub{text-align:center;}
-    .btn{display:block;width:100%;max-width:330px;margin:0 auto;text-align:center;}
-    main{padding-top:2rem;}
+    .hero-copy h1{text-align:center;font-size:clamp(1.6rem,6.5vw,2.2rem);}
+    .hero-sub{text-align:center;font-size:1rem;}
+    .btn{display:block;width:100%;max-width:320px;margin:0 auto;text-align:center;}
+    .hero-trust{text-align:center;}
+    main{padding-top:1.6rem;}
     .lead{text-align:center;}
   }
 </style>
@@ -188,7 +214,9 @@
     <h1>А что, если йога — это не только про&nbsp;тело?</h1>
     <div class="hero-sub">Небольшая бесплатная группа · пространство для возвращения к себе</div>
     <a class="btn" href="https://t.me/Yulia_yoga_innere_balance">Написать в Telegram</a>
+    <div class="hero-trust">Практика в парке · 40–50 минут · бесплатно</div>
   </div>
+  <div class="scroll-hint" aria-hidden="true">⌄</div>
 </div>
 
 <main>
