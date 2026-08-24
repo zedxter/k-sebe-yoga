@@ -5,201 +5,180 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Йога — возвращение к себе · Potsdam</title>
 <meta name="description" content="Бесплатные уличные занятия йогой для женщин в Потсдаме. Возвращение к себе: движение, дыхание, внимание к себе. Тёплая практика в парке, не фитнес.">
+<!-- Cormorant Garamond (serif, премиальный) + Inter (sans-тело) — дизайн-система k-sebe-yoga -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --cream:#faf5ee;      /* низ страницы — спокойный крем */
-    --bg1:#f9e6d3;        /* верх — тёплый тон, тянется от шапки */
-    --bg2:#f7edd9;        /* середина — медовый */
-    --peach:#f2c9a3;      /* акцент */
-    --rose:#e08a6f;       /* эмоция (чуть глубже, чтобы кнопка читалась) */
-    --brown:#4b372b;      /* текст, контраст */
-    --card:#fdeee0;       /* тёплая подложка карточек */
-    --cardhot:#fbdcbf;    /* акцентная карточка */
+    --bg:#FFF8EF;        /* мрамор-беж — фон страницы */
+    --card:#F7EDE1;      /* подложка карточек */
+    --ink:#3D2F28;       /* тёплый шоколад — текст */
+    --muted:#8a7a6e;     /* приглушённый для мета */
+    --accent:#C98153;    /* терракота — ТОЛЬКО заголовки-акценты и CTA */
+    --white:#FFFFFF;
+    --serif:'Cormorant Garamond', Georgia, serif;
+    --sans:'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
   html,body{overflow-x:hidden;width:100%;}
   body{
-    font-family:Georgia,'Times New Roman',serif;
-    /* Вся страница — тёплая лента: персик наверху плавно уходит в крем вниз.
-       Так шапка-фото и контент живут в одном цветовом поле, а не на белом холсте. */
-    background:linear-gradient(180deg,var(--bg1) 0%,var(--bg2) 40%,var(--cream) 100%);
-    color:var(--brown);
-    line-height:1.7;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:1.02rem;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
   }
-  /* Шапка с обложкой edge-to-edge: картинка во всю ширину окна, без боковых полей и рамки.
-     Тёплая лента страницы и «мостик» внизу вплавляют фото в ту же тёплую историю, что и контент. */
-  header{
-    position:relative;
-    width:100%;
+
+  /* ---------- Hero: двуколоночный, фото фигурой целиком ---------- */
+  .wrap{max-width:1080px;margin:0 auto;padding:0 1.4rem;}
+  .hero{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:3rem;
+    align-items:center;
+    padding:5rem 0 4rem;
+  }
+  .hero-photo{
     overflow:hidden;
+    border-radius:14px;
+    box-shadow:0 30px 60px -34px rgba(130,85,55,.28);
   }
-  /* Обложка: на мобиле бьётся в естественную 16:9 (низкая, компактная, без кропа).
-     На десктопе широкая лента: высоту ограничиваем и кадрируем по вертикали (объект не теряется),
-     чтобы всю ширину не раздуть в гигантскую полосу. */
-  .hero-img{
+  .hero-photo img{
     display:block;
     width:100%;
-    height:auto;
+    height:100%;
+    min-height:420px;
+    max-height:640px;
     object-fit:cover;
-    object-position:center 30%;
+    object-position:center top;
   }
-  @media(min-width:720px){
-    .hero-img{
-      height:clamp(360px, 44vh, 560px);
-      object-fit:cover;
-      object-position:center 28%;
-    }
-  }
-  .hero-cap{
-    position:absolute;
-    left:0; right:0; bottom:0;
-    padding:1.5rem 1.2rem 1.9rem;
-    text-align:center;
-    color:#fff;
-    background:linear-gradient(to top, rgba(75,55,43,.86), rgba(75,55,43,0));
-  }
-  .hero-cap h1{
-    font-size:clamp(1.5rem,5vw,2.55rem);
-    font-weight:normal;
-    font-style:italic;
-    text-shadow:0 1px 10px rgba(0,0,0,.38);
-    line-height:1.25;
+  .hero-copy h1{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(2rem,4.6vw,3.4rem);
+    line-height:1.12;
+    letter-spacing:-0.01em;
+    margin-bottom:1.2rem;
   }
   .hero-sub{
-    margin-top:0.6rem;
-    font-size:clamp(.95rem,3vw,1.05rem);
-    text-shadow:0 1px 6px rgba(0,0,0,.45);
-    max-width:34ch;
-    margin-left:auto;margin-right:auto;
-  }
-  /* Мостик от шапки к контенту: мягкая тёплая полоска, что гасит резкий стык. */
-  .bridge{
-    height:26px;
-    background:linear-gradient(to bottom, rgba(248,225,205,.85), rgba(241,237,217,0));
-    margin-top:-26px;
-    pointer-events:none;
-  }
-  main{
-    max-width:760px;
-    margin:0 auto;
-    padding:2.5rem 1.2rem 4rem;
-  }
-  .lead{
-    font-size:1.22rem;
-    font-style:italic;
-    text-align:center;
-    color:var(--brown);
+    color:var(--muted);
+    font-size:1.08rem;
     margin-bottom:2rem;
   }
-  /* Контент живёт не на белом, а на тёплом кремовом листе. */
-  .content{
-    background:linear-gradient(180deg,var(--cream) 0%, #fdf6ea 100%);
-    border-radius:26px;
-    padding:2.2rem 2rem;
-    box-shadow:0 18px 46px -20px rgba(160,110,80,.18);
+  .btn{
+    display:inline-block;
+    background:var(--accent);
+    color:#fff;
+    font-family:var(--sans);
+    font-weight:500;
+    font-size:1rem;
+    padding:0.85rem 1.7rem;
+    border-radius:999px;
+    text-decoration:none;
+    box-shadow:0 12px 26px -16px rgba(201,129,83,.55);
+    transition:transform .15s, box-shadow .15s;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 16px 30px -16px rgba(201,129,83,.6);}
+
+  /* ---------- Контент ---------- */
+  main{max-width:720px;margin:0 auto;padding:0 1.4rem 4.5rem;}
+  .lead{
+    font-family:var(--serif);
+    font-size:clamp(1.35rem,2.6vw,1.7rem);
+    line-height:1.5;
+    text-align:center;
+    margin-bottom:3rem;
+  }
+  section{margin:3rem 0;}
+  h2{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:1.7rem;
+    margin-bottom:1rem;
+    color:var(--ink);
   }
   .manifesto{
     background:var(--card);
-    border-left:5px solid var(--peach);
-    padding:1.5rem 1.5rem;
-    margin:2rem 0;
-    border-radius:0 16px 16px 0;
-    font-size:1.12rem;
+    border-left:4px solid var(--accent);
+    padding:1.6rem 1.7rem;
+    margin:1.8rem 0;
+    border-radius:0 14px 14px 0;
   }
-  .manifesto .item{display:block;margin:0.35rem 0;}
-  section{margin:2.1rem 0;}
-  h2{
-    font-size:1.35rem;
-    font-weight:normal;
+  .manifesto .item{
+    display:block;
+    font-family:var(--serif);
+    font-size:1.25rem;
     font-style:italic;
-    color:var(--brown);
-    margin-bottom:0.8rem;
-    border-bottom:2px solid var(--peach);
-    padding-bottom:0.3rem;
+    margin:0.5rem 0;
   }
-  ul.check{list-style:none;margin-top:0.6rem;}
-  ul.check li{margin:0.4rem 0;}
-  .meta{
-    font-size:1.05rem;
-    margin:0.6rem 0;
-    line-height:1.8;
+  ul.check{list-style:none;margin-top:0.8rem;}
+  ul.check li{
+    margin:0.5rem 0;
+    padding-left:1.7rem;
+    position:relative;
   }
+  ul.check li::before{
+    content:"";
+    position:absolute;left:0;top:0.62em;
+    width:0.55rem;height:0.55rem;
+    background:var(--accent);
+    border-radius:50%;
+    opacity:.85;
+  }
+  .meta{color:var(--muted);line-height:1.9;}
   .notes{
     background:var(--card);
-    border:1px solid rgba(232,169,160,.45);
+    border:1px solid rgba(201,129,83,.28);
     border-radius:16px;
-    padding:1.6rem 1.5rem;
-    margin:2rem 0;
+    padding:2rem 1.9rem;
+    margin:2.4rem 0;
     text-align:center;
-    box-shadow:0 14px 34px -22px rgba(210,130,100,.25);
   }
-  .notes p{margin:0.6rem 0;}
-  .cta{
-    display:block;
-    width:100%;
-    max-width:340px;
-    margin:1.2rem auto 0;
-    text-align:center;
-    background:var(--rose);
-    color:#fff;
-    text-decoration:none;
-    font-family:sans-serif;
-    font-size:1.05rem;
-    padding:0.9rem 1.5rem;
-    border-radius:999px;
-    box-shadow:0 4px 14px rgba(224,138,111,.44);
-    transition:transform .15s, box-shadow .15s;
-  }
-  .cta:hover{transform:translateY(-2px);box-shadow:0 7px 20px rgba(224,138,111,.5);}
-  /* Кнопка в шапке (hero) компактнее, чтобы не съедала первый экран */
-  .hero-cap .cta{
-    margin-top:0.9rem;
-    padding:0.75rem 1.4rem;
-    font-size:0.95rem;
-  }
+  .notes p{margin:0.7rem 0;}
+  .notes .btn{margin:1rem auto 0;}
   .closing{
-    text-align:center;
-    font-size:1.15rem;
+    font-family:var(--serif);
+    font-size:1.5rem;
     font-style:italic;
-    margin-top:2.5rem;
-    color:var(--brown);
+    text-align:center;
+    margin-top:3rem;
   }
   footer{
     text-align:center;
-    padding:1.5rem;
+    padding:2rem 1rem;
     font-size:0.85rem;
-    color:#9c8774;
-    border-top:1px solid var(--peach);
-    background:linear-gradient(180deg,var(--bg2),var(--cream));
+    color:var(--muted);
+    border-top:1px solid rgba(201,129,83,.2);
   }
-  @media(max-width:480px){
-    main{padding:1.8rem 1rem 3rem;}
-    .content{padding:1.6rem 1.1rem;}
-    .manifesto{padding:1.2rem 1.1rem;}
-    .notes{padding:1.2rem 1rem;}
-    .hero-cap{padding:1.1rem 1rem 1.5rem;}
-    header{border-radius:0 0 30px 30px;}
+
+  /* ---------- Мобильная адаптивность ---------- */
+  @media(max-width:720px){
+    .hero{grid-template-columns:1fr;gap:1.8rem;padding:2.2rem 0 0;}
+    .hero-photo img{aspect:auto;max-height:none;min-height:0;}
+    .hero-copy{padding:0 0.4rem;}
+    main{padding-top:2rem;}
+    .hero-copy h1{text-align:center;}
+    .hero-sub{text-align:center;}
+    .btn{display:block;max-width:340px;margin:0 auto;text-align:center;}
+    .lead{text-align:center;}
   }
 </style>
 </head>
 <body>
 
-<header>
-  <picture class="hero-img">
-    <img class="hero-img" src="cover-v2.jpg"
-      srcset="cover-v2-mobile.jpg 640w, cover-v2.jpg 1280w"
-      sizes="100vw" alt="Йога — возвращение к себе" />
-  </picture>
-  <div class="hero-cap">
-    <h1>А что, если йога — это не только про тело?</h1>
-    <div class="hero-sub">Небольшая бесплатная группа · пространство для возвращения к себе</div>
-    <a class="cta" href="https://t.me/Yulia_yoga_innere_balance">Написать в Telegram</a>
+<div class="hero win wrap">
+  <div class="hero-photo">
+    <img src="/k-sebe-yoga/hero.jpg" alt="Йога — возвращение к себе" />
   </div>
-</header>
-<div class="bridge"></div>
-
-<div class="content">
+  <div class="hero-copy">
+    <h1>А что, если йога — это не только про&nbsp;тело?</h1>
+    <div class="hero-sub">Небольшая бесплатная группа · пространство для возвращения к себе</div>
+    <a class="btn" href="https://t.me/Yulia_yoga_innere_balance">Написать в Telegram</a>
+  </div>
+</div>
 
 <main>
 
@@ -210,12 +189,12 @@
 Не просто принять красивую асану.<br>
 А через движение, дыхание и внимание к себе — начать слышать себя глубже.</p>
     <div class="manifesto">
-      <span class="item">💖 Свои чувства.</span>
-      <span class="item">✨ Свои желания.</span>
-      <span class="item">🌙 Свою интуицию.</span>
-      <span class="item">🔥 Свою силу.</span>
-      <span class="item">🌸 Свою индивидуальность.</span>
-      <span class="item">🎨 И те способности и таланты, которые, возможно, давно ждут возможности проявиться.</span>
+      <span class="item">Свои чувства.</span>
+      <span class="item">Свои желания.</span>
+      <span class="item">Свою интуицию.</span>
+      <span class="item">Свою силу.</span>
+      <span class="item">Свою индивидуальность.</span>
+      <span class="item">И те способности и таланты, которые, возможно, давно ждут возможности проявиться.</span>
     </div>
     <p>Мы будем использовать йогу немного иначе — как способ познания себя и раскрытия своего внутреннего потенциала.</p>
     <p>Каждая практика будет посвящена определённой теме: желаниям, самоощущению, уверенности, внутренней силе, женской энергии, творчеству и своим природным способностям.</p>
@@ -231,10 +210,10 @@
   <section>
     <h2>С собой:</h2>
     <ul class="check">
-      <li>🧘‍♀️ коврик для йоги</li>
-      <li>👕 удобная одежда</li>
-      <li>💧 вода</li>
-      <li>☀️ утренний настрой</li>
+      <li>коврик для йоги</li>
+      <li>удобная одежда</li>
+      <li>вода</li>
+      <li>утренний настрой</li>
     </ul>
     <p>Я хочу, чтобы это было место, где можно на время остановиться от внешнего мира, почувствовать своё тело, услышать внутренний голос и постепенно возвращать себе то, что мы так часто теряем в повседневности, — себя настоящую.</p>
   </section>
@@ -243,15 +222,13 @@
     <p>⏱ Продолжительность: 40–50 минут</p>
     <p>💰 Участие: бесплатно</p>
     <p>📍 Ruinenberg, Potsdam (точную локацию напишу в личку)</p>
-    <p>✉️ Если ты чувствуешь, что тебе хочется лучше узнать себя, вернуть контакт со своими желаниями и открыть в себе что-то новое —</p>
-    <a class="cta" href="https://t.me/Yulia_yoga_innere_balance">Напиши мне в личку — @Yulia_yoga_innere_balance</a>
+    <p>✉️ Если ты чувствуешь, что хочешь лучше узнать себя, вернуть контакт со своими желаниями и открыть в себе что-то новое —</p>
+    <a class="btn" href="https://t.me/Yulia_yoga_innere_balance">Напиши мне в личку — @Yulia_yoga_innere_balance</a>
   </div>
 
   <p class="closing">Возможно, именно с этой встречи начнётся твоё новое знакомство с собой 🌅</p>
 
 </main>
-
-</div>
 
 <footer>Йога — «возвращение к себе» · Potsdam</footer>
 
