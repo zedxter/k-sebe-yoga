@@ -32,14 +32,13 @@
     -webkit-font-smoothing:antialiased;
   }
 
-  /* ---------- Hero: полноширинный, компактный — контент ниже выглядывает ---------- */
+  /* ---------- Hero: полноширинный, компактный; женщина слева, текст справа ---------- */
   .hero{
     position:relative;
     width:100%;
     min-height:72vh;
     display:flex;
     align-items:center;
-    justify-content:center;
     overflow:hidden;
   }
   .hero-img{
@@ -48,38 +47,41 @@
     width:100%;
     height:100%;
     object-fit:cover;
-    object-position:center 22%;
+    object-position:left 22%;
   }
-  /* Градиент-оверлей: затемнение внизу и с краёв, чтобы текст читался на любом фото */
+  /* Градиент-оверлей: затемнение справа и снизу (под текст+CTA), без перекрытия фигуры слева */
   .hero-overlay{
     position:absolute;
     inset:0;
-    background:linear-gradient(to top, rgba(75,55,43,.74), rgba(75,55,43,0) 55%),
-               linear-gradient(to bottom, rgba(75,55,43,.35), rgba(75,55,43,0) 30%);
+    background:linear-gradient(to right, rgba(75,55,43,0) 0%, rgba(75,55,43,.35) 45%, rgba(75,55,43,.82) 100%),
+               linear-gradient(to top, rgba(75,55,43,.5), rgba(75,55,43,0) 55%);
     pointer-events:none;
   }
   .hero-copy{
     position:relative;
     z-index:2;
-    max-width:720px;
-    padding:0 1.5rem;
-    text-align:center;
+    max-width:560px;
+    margin-left:auto;   /* прижать к правому краю (свободная правая часть) */
+    margin-top:auto;margin-bottom:auto;
+    align-self:center;
+    padding:0 2rem 1.2rem;
+    text-align:left;
     color:#fff;
   }
   .hero-copy h1{
     font-family:var(--serif);
     font-weight:500;
-    font-size:clamp(2.1rem,5.2vw,3.7rem);
-    line-height:1.12;
+    font-size:clamp(2rem,5vw,3.4rem);
+    line-height:1.1;
     letter-spacing:-0.01em;
     margin-bottom:1rem;
-    text-shadow:0 2px 18px rgba(0,0,0,.35);
+    text-shadow:0 2px 16px rgba(0,0,0,.4);
   }
   .hero-sub{
     color:rgba(255,255,255,.92);
-    font-size:1.1rem;
-    margin-bottom:1.6rem;
-    text-shadow:0 1px 8px rgba(0,0,0,.3);
+    font-size:1.05rem;
+    margin-bottom:1.5rem;
+    text-shadow:0 1px 8px rgba(0,0,0,.35);
   }
   .btn{
     display:inline-block;
@@ -87,8 +89,8 @@
     color:#fff;
     font-family:var(--sans);
     font-weight:500;
-    font-size:1rem;
-    padding:0.85rem 1.7rem;
+    font-size:0.98rem;
+    padding:0.8rem 1.6rem;
     border-radius:999px;
     text-decoration:none;
     box-shadow:0 12px 26px -16px rgba(201,129,83,.55);
@@ -97,11 +99,11 @@
   .btn:hover{transform:translateY(-2px);box-shadow:0 16px 30px -16px rgba(201,129,83,.6);}
   /* Строчка доверия под CTA (паттерн успешных лендингов: trust signal у первого CTA) */
   .hero-trust{
-    margin-top:1.2rem;
+    margin-top:1.1rem;
     color:rgba(255,255,255,.85);
-    font-size:0.95rem;
+    font-size:0.92rem;
     font-family:var(--sans);
-    text-shadow:0 1px 6px rgba(0,0,0,.3);
+    text-shadow:0 1px 6px rgba(0,0,0,.35);
   }
   /* Скролл-намек: лёгкий шеврон внизу героя, говорит «контент ниже» */
   .scroll-hint{
@@ -192,14 +194,14 @@
 
   /* ---------- Мобильная адаптивность ---------- */
   @media(max-width:720px){
-    /* На мобиле hero = фото-лента + текст, НЕ во весь экран — контент виден сразу */
-    .hero{min-height:0;}
-    .hero{aspect-ratio:4/5;}
-    .hero-copy{padding:0 1.1rem;}
-    .hero-copy h1{text-align:center;font-size:clamp(1.6rem,6.5vw,2.2rem);}
-    .hero-sub{text-align:center;font-size:1rem;}
-    .btn{display:block;width:100%;max-width:320px;margin:0 auto;text-align:center;}
-    .hero-trust{text-align:center;}
+    /* На мобиле hero: фигура слева, текст справа — НЕ перекрываем фигуру, контент виден ниже */
+    .hero{min-height:0;aspect-ratio:auto;padding:5.5rem 1.2rem 1.6rem;}
+    .hero-img{object-position:left 20%;}
+    .hero-copy{max-width:none;margin-left:auto;margin-right:0;padding:0;text-align:left;width:58%;}
+    .hero-copy h1{text-align:left;font-size:clamp(1.5rem,5.8vw,1.9rem);}
+    .hero-sub{text-align:left;font-size:0.98rem;}
+    .btn{display:inline-block;width:auto;}
+    .hero-trust{text-align:left;}
     main{padding-top:1.6rem;}
     .lead{text-align:center;}
   }
