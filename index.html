@@ -194,14 +194,15 @@
 
   /* ---------- Мобильная адаптивность ---------- */
   @media(max-width:720px){
-    /* На мобиле hero: фигура слева, текст справа — НЕ перекрываем фигуру, контент виден ниже */
-    .hero{min-height:0;aspect-ratio:auto;padding:5.5rem 1.2rem 1.6rem;}
-    .hero-img{object-position:left 20%;}
-    .hero-copy{max-width:none;margin-left:auto;margin-right:0;padding:0;text-align:left;width:58%;}
-    .hero-copy h1{text-align:left;font-size:clamp(1.5rem,5.8vw,1.9rem);}
-    .hero-sub{text-align:left;font-size:0.98rem;}
+    /* На мобиле: вертикальная обложка (hero-mobile.jpg), фигура по центру (ок. 35–80% по верт).
+       Текст сверху (выше макушки), чтобы НЕ перекрывать женщину — бест-практика для узких экранов. */
+    .hero{min-height:0;aspect-ratio:auto;padding:4.2rem 1.4rem 1.6rem;}
+    .hero-img{object-position:center top;}
+    .hero-copy{max-width:none;margin:0 auto;padding:0;text-align:center;width:100%;}
+    .hero-copy h1{text-align:center;font-size:clamp(1.5rem,5.8vw,1.9rem);}
+    .hero-sub{text-align:center;font-size:0.98rem;}
     .btn{display:inline-block;width:auto;}
-    .hero-trust{text-align:left;}
+    .hero-trust{text-align:center;}
     main{padding-top:1.6rem;}
     .lead{text-align:center;}
   }
@@ -210,7 +211,11 @@
 <body>
 
 <div class="hero">
-  <img class="hero-img" src="/k-sebe-yoga/hero.jpg" alt="Йога — возвращение к себе" />
+  <picture>
+    <source media="(min-width:721px)" srcset="/k-sebe-yoga/hero-wide.jpg" />
+    <source media="(max-width:720px)" srcset="/k-sebe-yoga/hero-mobile.jpg" />
+    <img class="hero-img" src="/k-sebe-yoga/hero-wide.jpg" alt="Йога — возвращение к себе" />
+  </picture>
   <div class="hero-overlay"></div>
   <div class="hero-copy">
     <h1>А что, если йога — это не только про&nbsp;тело?</h1>
