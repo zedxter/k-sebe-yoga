@@ -36,7 +36,7 @@ conversion into bookings/enquiries once live.
 - **WHEN** the unit-economics and North Star sections are read
 - **THEN** they are marked as TBD to define when the project goes live, with the stated direction
 
-### Requirement: k-sa-yoga quality gate
+### Requirement: k-sebe-yoga quality gate
 Quality is gated by the full spec→review cycle (team canon), design rules (Lutik: text-free
 images, full figure visible), and security when payments integrate.
 
