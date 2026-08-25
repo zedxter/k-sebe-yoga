@@ -16,8 +16,12 @@ Add `product-standards.md` at the repo root (English, per GitHub-language rule),
 the four mandatory axes:
 
 - **Unit economics:** TBD / deferred — to define when the project moves to a live/product
-  phase (service→product direction: bookings/subscription).
-- **North Star:** TBD / deferred — likely conversion into bookings/enquiries when live.
+  phase, focused on attracting women to free outdoor sessions (no revenue model; monetization
+  is not planned for this community offering).
+- **North Star:** TBD / deferred — direction is **participation/retention for free community
+  sessions**: sign-ups → attendance → repeat/sustained attendance (a "come back" measure).
+  Not a booking/subscription funnel. Deferral closes when the landing Telegram CTA yields a real
+  stream of sign-ups or at the first live meetup, whichever comes first.
 - **Quality gate:** full spec→review cycle (team canon, "no lite" for GitHub repos);
   design per Lutik's rules (text-free images, full figure visible); security when payments
   integrate (if any).

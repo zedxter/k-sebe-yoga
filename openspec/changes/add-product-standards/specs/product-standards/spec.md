@@ -28,13 +28,19 @@ and `specs/`) so future changes follow the team spec→code cycle.
 
 ### Requirement: k-sebe-yoga North Star and unit economics
 Unit economics and North Star are deferred ("TBD") until the project moves to a live/product
-phase; the direction is service→product (bookings/subscription), and the likely North Star is
-conversion into bookings/enquiries once live.
+phase. K-sebe-yoga is a free, community-run outdoor yoga group; the natural North Star is a
+**participation/retention metric, not a booking or subscription funnel**: sign-ups → materialized
+attendance → repeat/sustained attendance (a "come back" measure). "Conversion into
+bookings/subscriptions" is explicitly NOT the target metric for this offering, because there
+is no booking or payment flow. The deferral closes when the landing's Telegram CTA produces a
+real stream of enquiries or at the first live meetup, whichever comes first.
 
 #### Scenario: Unit economics and North Star are explicitly marked TBD
 - **GIVEN** the product standards document for k-sebe-yoga
 - **WHEN** the unit-economics and North Star sections are read
-- **THEN** they are marked as TBD to define when the project goes live, with the stated direction
+- **THEN** they are marked as TBD to define when the project goes live, with the stated
+  participation/retention direction (sign-ups → attendance → repeat) and a closing trigger
+  (a real CTA/DM stream or the first live meetup) rather than an idealized booking funnel
 
 ### Requirement: k-sebe-yoga quality gate
 Quality is gated by the full spec→review cycle (team canon), design rules (Lutik: text-free
