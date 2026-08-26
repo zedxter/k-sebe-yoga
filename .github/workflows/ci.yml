@@ -1,0 +1,51 @@
+name: CI (static)
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  static:
+    name: Static check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check required files exist
+        run: |
+          test -f index.html && echo "index.html OK"
+          test -s index.html && echo "index.html non-empty"
+
+      - name: Verify local asset references in HTML exist
+        run: |
+          set -euo pipefail
+          # Collect local (non-URL, non-anchor) src/href targets from index.html
+          grep -oE '(src|href)="[^"]+"' index.html \
+            | sed -E 's/^(src|href)="([^"]+)"/\2/' \
+            | grep -vE '^(https?://|#|mailto:)' \
+            | sort -u > /tmp/refs.txt
+          if [ ! -s /tmp/refs.txt ]; then echo "no local asset refs"; exit 0; fi
+          while IFS= read -r f; do
+            if [ ! -f "$f" ]; then echo "MISSING asset: $f"; exit 1; fi
+            echo "asset OK: $f"
+          done < /tmp/refs.txt
+
+      - name: Verify CSS background assets referenced exist
+        run: |
+          set -euo pipefail
+          grep -oE "url\(['\"]?[^)'\"]+['\"]?\)" index.html \
+            | sed -E "s/url\(['\"]?([^)'\"]+)['\"]?\)/\1/" \
+            | grep -vE '^(https?:|data:)' \
+            | sort -u > /tmp/cssrefs.txt
+          if [ ! -s /tmp/cssrefs.txt ]; then echo "no local css asset refs"; exit 0; fi
+          while IFS= read -r f; do
+            if [ ! -f "$f" ]; then echo "MISSING css asset: $f"; exit 1; fi
+            echo "css asset OK: $f"
+          done < /tmp/cssrefs.txt
