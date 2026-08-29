@@ -194,17 +194,28 @@
 
   /* ---------- Мобильная адаптивность ---------- */
   @media(max-width:720px){
-    /* На мобиле: вертикальная обложка (hero-mobile.jpg), фигура по центру (ок. 35–80% по верт).
-       Текст сверху (выше макушки), чтобы НЕ перекрывать женщину — бест-практика для узких экранов. */
-    .hero{min-height:0;aspect-ratio:auto;padding:4.2rem 1.4rem 1.6rem;}
-    .hero-img{object-position:center top;}
-    .hero-copy{max-width:none;margin:0 auto;padding:0;text-align:center;width:100%;}
-    .hero-copy h1{text-align:center;font-size:clamp(1.5rem,5.8vw,1.9rem);}
-    .hero-sub{text-align:center;font-size:0.98rem;}
-    .btn{display:inline-block;width:auto;}
-    .hero-trust{text-align:center;}
+    /* На мобиле: вертикальная обложка (hero-mobile.jpg) в ПОЛНЫЙ РОСТ (родной ratio 9:16),
+       без обрезки cover-ом. Текст сверху (выше макушки), чтобы НЕ перекрывать женщину
+       (фигура по центру ~35–80% по вертикали) — бест-практика для узких экранов. */
+    .hero{min-height:0;aspect-ratio:auto;padding:0;}
+    .hero-img{position:relative;inset:auto;width:100%;height:auto;object-fit:fill;object-position:initial;display:block;}
+    .hero-overlay{background:linear-gradient(to bottom, rgba(75,55,43,.6) 0%, rgba(75,55,43,0) 42%);}
+    .hero-copy{position:absolute;top:.9rem;left:0;right:0;max-width:none;margin:0;padding:0 1.2rem;text-align:center;width:100%;}
+    .hero-copy h1{text-align:center;font-size:clamp(1.3rem,5.4vw,1.8rem);line-height:1.15;margin-bottom:.45rem;}
+    .hero-sub{text-align:center;font-size:.9rem;margin-bottom:.7rem;line-height:1.4;}
+    .btn{display:inline-block;width:auto;padding:.65rem 1.4rem;font-size:.9rem;}
+    .hero-trust{text-align:center;font-size:.8rem;margin-top:.7rem;line-height:1.4;}
     main{padding-top:1.6rem;}
     .lead{text-align:center;}
+  }
+  @media(max-width:370px){
+    /* Очень узкие телефоны: ещё компактнее, чтобы текст (h1+sub+CTA+trust) умещался
+       в верхней части вертикальной обложки и НЕ доходил до фигуры. */
+    .hero-copy{top:.7rem;padding:0 .9rem;}
+    .hero-copy h1{font-size:clamp(1.05rem,5vw,1.3rem);line-height:1.15;margin-bottom:.3rem;}
+    .hero-sub{font-size:.8rem;line-height:1.3;margin-bottom:.55rem;}
+    .btn{padding:.55rem 1.2rem;font-size:.84rem;line-height:1.3;}
+    .hero-trust{font-size:.74rem;line-height:1.3;margin-top:.5rem;}
   }
 </style>
 </head>
