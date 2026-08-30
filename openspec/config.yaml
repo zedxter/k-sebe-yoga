@@ -1,32 +1,43 @@
 schema: spec-driven
 
-# Project context (optional)
-# This is shown to AI when creating artifacts.
-# Add your tech stack, conventions, style guides, domain knowledge, etc.
-# Example:
-#   context: |
-#     Tech stack: TypeScript, React, Node.js
-#     We use conventional commits
-#     Domain: e-commerce platform
+# Project context — injected into EVERY artifact prompt.
+context: |
+  k-sebe-yoga — a single-page landing site for shared outdoor women's yoga
+  practice in Potsdam/Berlin, for the Russian-speaking community. Practice:
+  "return to yourself" — women's energy, intuition, soft inner-potential work
+  in the open air. Not fitness.
 
-# Per-artifact rules (optional)
-# Add custom rules for specific artifacts.
-# Example:
-#   rules:
-#     proposal:
-#       - Keep proposals under 500 words
-#       - Always include a "Non-goals" section
-#     tasks:
-#       - Break tasks into chunks of max 2 hours
+  Tech stack: plain HTML + CSS, single-page static site, no backend. Deployed
+  via Caddy + systemd. Cover image (hero) + invitation text + Telegram CTA.
 
-# Per-operation guidance (optional)
-# Add advisory guidance for how apply and archive work should be conducted.
-# This is separate from artifact rules above.
-# Example:
-#   operations:
-#     apply:
-#       guidance:
-#         - Keep test summaries concise
-#     archive:
-#       guidance:
-#         - Summarize the archive outcome before finishing
+  Language policy: ALL repository content (specs, README, commits, PRs) is
+  ENGLISH. Internal team notes may stay Russian; GitHub-facing content is EN only.
+
+  Spec-first law: no production code without an approved plan in openspec/.
+  Review gate: every spec/code PR is reviewed by aspect (design scope = Lutik,
+  tech = Geralt, scope = Yennefer).
+
+rules:
+  proposal:
+    - State the single intent and explicit scope/non-goals up front
+    - Right-size the ceremony to the change: light-spec for refactor/docs/chore
+  specs:
+    - Write requirements in RFC-2119 MUST/SHOULD/MAY wording
+    - One behavior per requirement; no multi-behavior sentences
+    - Cover Given/When/Then scenarios including negative and edge cases
+  design:
+    - Describe the technical approach and the alternatives considered
+    - Include a rollback path and the files/layers affected
+  tasks:
+    - Map each task to a requirement/scenario it satisfies
+    - Keep chunks to ~2h
+
+operations:
+  apply:
+    guidance:
+      - Run focused tests for the changed area before the full suite
+      - Check visual layout matches the spec (plain HTML/CSS, no framework)
+  archive:
+    guidance:
+      - Verify the implementation matches the delta spec before finalizing
+      - Keep the completion summary concise
