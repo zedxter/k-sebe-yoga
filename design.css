@@ -1,0 +1,334 @@
+/* ==========================================================================
+   design.css — K-Sebe-Yoga Design System
+   Source of truth: DESIGN.md (token spec)
+   ==========================================================================
+   Цвета, типографика, скругления, отступы, макет, компоненты.
+   Классы соответствуют DESIGN.md токенам.
+   ========================================================================== */
+
+/* ------------------------------------------
+   1. Custom Properties (Design Tokens)
+   ------------------------------------------ */
+:root {
+  /* Colors */
+  --color-primary: #3D2F28;
+  --color-secondary: #8A7A6E;
+  --color-tertiary: #C98153;
+  --color-neutral: #FFF8EF;
+  --color-surface: #F7EDE1;
+  --color-on-primary: #FFF8EF;
+  --color-on-tertiary: #FFFFFF;
+
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Rounded */
+  --rounded-sm: 4px;
+  --rounded-md: 8px;
+  --rounded-lg: 16px;
+  --rounded-full: 9999px;
+  --rounded-card: 0.45rem;
+  --rounded-thumb: 0.35rem;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 48px;
+
+  /* Layout */
+  --page-max-width: 720px;
+  --hero-min-height: 72vh;
+}
+
+
+/* ------------------------------------------
+   2. Reset & Base
+   ------------------------------------------ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  background: var(--color-neutral);
+  color: var(--color-primary);
+  font-family: var(--font-sans);
+  font-size: 1.02rem;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+/* ------------------------------------------
+   3. Typography Tokens
+   ------------------------------------------ */
+
+/* h1 — крупный serif заголовок */
+h1,
+.h1,
+.hero-title {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 2.8rem;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+/* h2 — секционный заголовок */
+h2,
+.h2 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 1.7rem;
+  line-height: 1.2;
+}
+
+/* lead — вводная строка */
+.lead,
+.hero-subtitle {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* body-md — основной текст по умолчанию (уже на body) */
+.body-md {
+  font-family: var(--font-sans);
+  font-size: 1.02rem;
+  font-weight: 400;
+  line-height: 1.75;
+}
+
+/* body-small — мелкий текст */
+.body-small,
+small {
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* button — кнопочный текст */
+.btn,
+.button-label {
+  font-family: var(--font-sans);
+  font-size: 0.98rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* manifesto-item — элемент манифеста */
+.manifesto-item {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* closing — финальная фраза */
+.closing {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* meta — мета-данные, подпись */
+.meta {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 400;
+  line-height: 1.9;
+  color: var(--color-secondary);
+}
+
+/* label-small — маленькая подпись */
+.label-small {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+
+/* ------------------------------------------
+   4. Layout
+   ------------------------------------------ */
+
+/* .page — single-column center (720px max-width) */
+.page {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 0 1.4rem 4.5rem;
+}
+
+/* .hero — edge-to-edge, ~72vh */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: var(--hero-min-height);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* .section — раздел с вертикальным отступом */
+.section {
+  margin: var(--space-xl) 0;
+}
+
+/* Простая сетка: 2 колонки */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+}
+
+/* Простая сетка: 3 колонки */
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--space-lg);
+}
+
+
+/* ------------------------------------------
+   5. Components
+   ------------------------------------------ */
+
+/* .btn — основная CTA-кнопка (pill, терракота) */
+.btn {
+  display: inline-block;
+  background: var(--color-tertiary);
+  color: var(--color-on-tertiary);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.98rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: var(--rounded-full);
+  text-decoration: none;
+  box-shadow: 0 12px 26px -16px rgba(201, 129, 83, 0.55);
+  transition: transform 0.15s, box-shadow 0.15s;
+  cursor: pointer;
+  border: none;
+  line-height: 1.4;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px -16px rgba(201, 129, 83, 0.6);
+}
+
+/* .card — универсальная подложка */
+.card {
+  background: var(--color-surface);
+  color: var(--color-primary);
+  border-radius: var(--rounded-lg);
+  padding: var(--space-lg);
+}
+
+/* .card-notes — вариант для контакта */
+.card-notes {
+  background: var(--color-surface);
+  color: var(--color-primary);
+  border-radius: var(--rounded-lg);
+  padding: 2rem 1.9rem;
+  border: 1px solid rgba(201, 129, 83, 0.28);
+}
+
+/* .manifesto — карточка с левой акцентной полосой */
+.manifesto {
+  background: var(--color-surface);
+  color: var(--color-primary);
+  border-left: 4px solid var(--color-tertiary);
+  padding: 1.6rem 1.7rem;
+  border-radius: 0 var(--rounded-lg) var(--rounded-lg) 0;
+}
+
+/* .check-marker — кружок-маркер для списков */
+.check-marker {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--color-tertiary);
+  border-radius: var(--rounded-full);
+  opacity: 0.85;
+  flex-shrink: 0;
+}
+
+
+/* ------------------------------------------
+   6. Spacing Utilities
+   ------------------------------------------ */
+.mt-xs { margin-top: var(--space-xs); }
+.mt-sm { margin-top: var(--space-sm); }
+.mt-md { margin-top: var(--space-md); }
+.mt-lg { margin-top: var(--space-lg); }
+.mt-xl { margin-top: var(--space-xl); }
+
+.mb-xs { margin-bottom: var(--space-xs); }
+.mb-sm { margin-bottom: var(--space-sm); }
+.mb-md { margin-bottom: var(--space-md); }
+.mb-lg { margin-bottom: var(--space-lg); }
+.mb-xl { margin-bottom: var(--space-xl); }
+
+.p-xs { padding: var(--space-xs); }
+.p-sm { padding: var(--space-sm); }
+.p-md { padding: var(--space-md); }
+.p-lg { padding: var(--space-lg); }
+.p-xl { padding: var(--space-xl); }
+
+.gap-xs { gap: var(--space-xs); }
+.gap-sm { gap: var(--space-sm); }
+.gap-md { gap: var(--space-md); }
+.gap-lg { gap: var(--space-lg); }
+.gap-xl { gap: var(--space-xl); }
+
+
+/* ------------------------------------------
+   7. Rounded Utilities
+   ------------------------------------------ */
+.rounded-sm { border-radius: var(--rounded-sm); }
+.rounded-md { border-radius: var(--rounded-md); }
+.rounded-lg { border-radius: var(--rounded-lg); }
+.rounded-full { border-radius: var(--rounded-full); }
+.rounded-card { border-radius: var(--rounded-card); }
+.rounded-thumb { border-radius: var(--rounded-thumb); }
+
+
+/* ------------------------------------------
+   8. Responsive — Mobile
+   ------------------------------------------ */
+@media (max-width: 720px) {
+  .page {
+    padding-top: 1.6rem;
+  }
+
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  h1,
+  .h1,
+  .hero-title {
+    font-size: clamp(1.3rem, 5.4vw, 1.8rem);
+  }
+}
