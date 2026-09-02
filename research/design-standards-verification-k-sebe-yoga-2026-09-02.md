@@ -15,7 +15,7 @@
 | 2 | Stylesheet — published, Content-Type text/css, CORS | ✅ PASS | Published at GitHub Pages URL, CORS `*`, max-age 600 |
 | 3 | Eval scenarios — created, >=1 PASS | ⚠️ WEAK PASS | QA scripts exist and pass; not formal eval framework |
 | 4 | ui-pixel-validation — passes on key pages | ❌ GAP | No ui-pixel-validation tool or tests exist |
-| 5 | Design gate in product-standards.md | ❌ GAP | No dedicated Design gate section; implicit only |
+| 5 | Design gate in product-standards.md | ✅ PASS | Dedicated Design gate section on `main` via PR #25 (Closes #23, commit `1bafc93`) |
 
 ---
 
@@ -59,7 +59,7 @@ The current `index.html` inlines all styles in a `<style>` block and does **not*
 
 ## 3. Eval Scenarios — ⚠️ WEAK PASS
 
-Three QA scripts exist in the repository root (untracked on `main`, tracked on `design/k-sebe-yoga-design-css`):
+Three QA scripts exist in the repository root, tracked on `verify/17-design-standards` (this branch, committed in this PR):
 
 | Script | Type | Result |
 |--------|------|--------|
@@ -85,27 +85,16 @@ No ui-pixel-validation tool, script, or configuration exists for k-sebe-yoga.
 
 ---
 
-## 5. Design Gate in product-standards.md — ❌ GAP
+## 5. Design Gate in product-standards.md — ✅ PASS
 
-The current `product-standards.md` has a "Quality gate" line:
-> "Design per Lutik's rules (full figure, text-free images)."
+The Design gate section was merged to `main` in [PR #25](https://github.com/zedxter/k-sebe-yoga/pull/25) (commit `1bafc93`, Closes [#23](https://github.com/zedxter/k-sebe-yoga/issues/23)). `product-standards.md` on `origin/main` now contains `### Design gate (added 2026-09-02)` with all required elements:
 
-This is **not** a proper Design gate section. Missing elements:
-- No reference to DESIGN.md as source of truth
-- No reference to design.css as published stylesheet
-- No design review checklist
-- No requirement for DESIGN.md to be linted before merge
-- No requirement for stylesheet to be published with CORS
-- No requirement for design eval scenarios to pass
-- No requirement for ui-pixel-validation to pass
-
-### Required additions
-A dedicated **Design gate** section in `product-standards.md` should include:
-- [ ] DESIGN.md must be linted (YAML valid, anti-patterns present)
-- [ ] Stylesheet must be published with `Content-Type: text/css` and CORS
-- [ ] Eval scenarios must pass (≥1 PASS)
-- [ ] ui-pixel-validation must pass on key pages
-- [ ] Design review required before merge
+- Source of truth: DESIGN.md for visual design tokens, design.css for published stylesheet
+- DESIGN.md must be linted before merge (YAML valid, all 6 anti-patterns present)
+- Stylesheet published with `Content-Type: text/css` and CORS (`Access-Control-Allow-Origin: *`)
+- Eval scenarios: ≥1 design-eval scenario must PASS before merge
+- ui-pixel-validation must pass on key pages
+- Design review required before merge (Lutik or owner approval)
 
 ---
 
@@ -116,14 +105,13 @@ A dedicated **Design gate** section in `product-standards.md` should include:
 | `design.css` not linked from `index.html` | Medium | Document or fix in separate issue |
 | No formal eval framework | Low | QA scripts work; formalize later |
 | ui-pixel-validation missing | Medium | Create sub-issue |
-| Design gate not in product-standards.md | Medium | Create sub-issue |
 
 ---
 
 ## Sub-issues Created
 
-- [#22](https://github.com/zedxter/k-sebe-yoga/issues/22) — Add ui-pixel-validation to k-sebe-yoga
-- [#23](https://github.com/zedxter/k-sebe-yoga/issues/23) — Add Design gate section to product-standards.md
+- [#22](https://github.com/zedxter/k-sebe-yoga/issues/22) — Add ui-pixel-validation to k-sebe-yoga — remains **open** (addressed in [PR #26](https://github.com/zedxter/k-sebe-yoga/pull/26))
+- [#23](https://github.com/zedxter/k-sebe-yoga/issues/23) — Add Design gate section to product-standards.md — **CLOSED** (merged via [PR #25](https://github.com/zedxter/k-sebe-yoga/pull/25))
 
 ---
 

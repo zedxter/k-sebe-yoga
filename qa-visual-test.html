@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QA: design.css visual test</title>
+<link href="design.css" rel="stylesheet">
+<style>
+  body { padding: 2rem; }
+  .qa-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .qa-block { padding: 1rem; min-width: 120px; text-align: center; }
+</style>
+</head>
+<body>
+
+<h1 class="h1">QA Visual Test: design.css tokens</h1>
+
+<h2 class="h2">1. Rounded tokens</h2>
+<div class="qa-row">
+  <div class="qa-block rounded-sm" style="background:var(--color-surface);border:1px solid #ccc">rounded-sm (4px)</div>
+  <div class="qa-block rounded-md" style="background:var(--color-surface);border:1px solid #ccc">rounded-md (8px)</div>
+  <div class="qa-block rounded-lg" style="background:var(--color-surface);border:1px solid #ccc">rounded-lg (14px)</div>
+  <div class="qa-block rounded-xl" style="background:var(--color-surface);border:1px solid #ccc">rounded-xl (16px)</div>
+  <div class="qa-block rounded-full" style="background:var(--color-tertiary);color:var(--color-on-tertiary);border:none">rounded-full pill</div>
+</div>
+
+<h2 class="h2">2. Colors</h2>
+<div class="qa-row">
+  <div class="qa-block" style="background:var(--color-primary);color:var(--color-on-primary)">Primary #3D2F28</div>
+  <div class="qa-block" style="background:var(--color-secondary);color:var(--color-on-primary)">Secondary #6B5B50</div>
+  <div class="qa-block" style="background:var(--color-tertiary);color:var(--color-on-tertiary)">Tertiary #C98153</div>
+  <div class="qa-block" style="background:var(--color-neutral)">Neutral #FFF8EF</div>
+  <div class="qa-block" style="background:var(--color-surface)">Surface #F7EDE1</div>
+</div>
+
+<h2 class="h2">3. Components</h2>
+<div class="qa-row">
+  <a class="btn" href="#">CTA-кнопка (pill)</a>
+</div>
+<div class="qa-row">
+  <div class="card" style="max-width:280px">Card (rounded-xl, surface bg, primary text)</div>
+  <div class="card-notes" style="max-width:280px">Card-notes (rounded-xl, surface bg, border)</div>
+</div>
+<div class="qa-row">
+  <div class="manifesto" style="max-width:400px">Manifesto (left accent border, rounded-right)</div>
+</div>
+<div class="qa-row" style="align-items:center">
+  <span class="check-marker"></span> check-marker (8px circle, tertiary)
+</div>
+
+<h2 class="h2">4. Typography</h2>
+<p class="body-md">body-md — основной текст. Primary #3D2F28 на neutral #FFF8EF. Inter, 1.02rem.</p>
+<p class="body-small">body-small — мелкий текст. Inter, 0.92rem.</p>
+<p class="meta">meta — мета-данные. Secondary #6B5B50, 0.85rem. Должен быть читаемый контраст на neutral фоне.</p>
+<p class="label-small">label-small — маленькая подпись. Inter, 0.8rem.</p>
+<p class="lead">lead — вводная строка. Cormorant Garamond, 1.6rem.</p>
+<p class="closing">closing — финальная фраза курсивом. Cormorant Garamond, 1.5rem.</p>
+<p class="manifesto-item">manifesto-item — элемент манифеста. Cormorant Garamond, 1.25rem.</p>
+
+<h2 class="h2">5. Spacing</h2>
+<div class="qa-row">
+  <div class="qa-block p-xs" style="background:var(--color-surface)">p-xs (4px)</div>
+  <div class="qa-block p-sm" style="background:var(--color-surface)">p-sm (8px)</div>
+  <div class="qa-block p-md" style="background:var(--color-surface)">p-md (16px)</div>
+  <div class="qa-block p-lg" style="background:var(--color-surface)">p-lg (24px)</div>
+  <div class="qa-block p-xl" style="background:var(--color-surface)">p-xl (48px)</div>
+</div>
+
+<h2 class="h2">6. Grids</h2>
+<div class="grid-2">
+  <div class="card">Grid-2 item a</div>
+  <div class="card">Grid-2 item b</div>
+</div>
+<div class="grid-3">
+  <div class="card">Grid-3 item 1</div>
+  <div class="card">Grid-3 item 2</div>
+  <div class="card">Grid-3 item 3</div>
+</div>
+
+</body>
+</html>
