@@ -12,6 +12,15 @@
 | **Unit economics** | N/A — free community offering, not a sandbox. Acquisition cost = Yulia's time + ads if any; metric = cost-per-lead. No revenue model |
 | **North Star metric** | **participation/retention**: sign-ups → attendance → repeat attendance. "Came and came back." Threshold: ≥3 repeat attendances/month → "retained". TBD: numeric target after first session data |
 | **Quality gate** | Full spec→PR→review→CI cycle (team canon). Design per Lutik's rules (full figure, text-free images). Security when payments/user data are introduced |
+
+### Design gate (added 2026-09-02)
+
+- **Source of truth:** DESIGN.md for visual design tokens, design.css for published stylesheet
+- **DESIGN.md:** must be linted before merge — YAML valid, all 6 anti-patterns present
+- **Stylesheet:** published at public URL, Content-Type `text/css`, CORS configured (`Access-Control-Allow-Origin: *`)
+- **Eval scenarios:** ≥1 design-eval scenario must PASS before merge
+- **ui-pixel-validation:** must pass on key pages (index.html, desktop + mobile 320px)
+- **Design review:** required before merge (Lutik or owner approval)
 | **Definition of Done** | Current stage (landing): landing is live, CTA collects sign-ups, CI is green. Full DoD when the service/product is live and had its first session |
 
 ### CD / auto-deploy
