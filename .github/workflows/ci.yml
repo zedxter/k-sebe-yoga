@@ -49,3 +49,36 @@ jobs:
             if [ ! -f "$f" ]; then echo "MISSING css asset: $f"; exit 1; fi
             echo "css asset OK: $f"
           done < /tmp/cssrefs.txt
+
+  visual:
+    name: UI Pixel Validation
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          pip install pip --upgrade
+          pip install pyyaml playwright
+
+      - name: Install Chromium (Playwright)
+        run: python -m playwright install chromium
+
+      - name: Run UI pixel validation (screenshots + token check)
+        run: python design-evals/validate.py
+
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: screenshots
+          path: design-evals/screenshots/
+          retention-days: 14
