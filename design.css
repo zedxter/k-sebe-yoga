@@ -212,6 +212,19 @@ small {
    5. Components
    ------------------------------------------ */
 
+/* a — ссылки */
+a {
+  color: var(--color-tertiary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 /* .btn — основная CTA-кнопка (pill, терракота) */
 .btn {
   display: inline-block;
@@ -233,6 +246,12 @@ small {
 .btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 16px 30px -16px rgba(201, 129, 83, 0.6);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--rounded-full);
 }
 
 /* .card — универсальная подложка */
