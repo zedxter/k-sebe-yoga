@@ -12,19 +12,20 @@ concurrency:
 jobs:
   qa-checks:
     name: Contrast + var reference
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: "3.11"
 
-      - name: Run WCAG contrast check
-        run: python _qa_contrast.py
+      - name: Run WCAG contrast check (reads CSS vars from design.css)
+        run: python _qa_contrast.py design.css
 
-      - name: Run CSS var() reference check
+      - name: Run CSS var() reference check (scans all .css files)
         run: python _qa_varcheck.py
