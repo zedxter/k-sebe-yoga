@@ -9,7 +9,29 @@
     ["fontFamily", "typography.button.fontFamily", "CTA кнопка — шрифт"],
     ["fontWeight", "typography.button.fontWeight", "CTA кнопка — насыщенность"]
   ],
+  ".hero-trust": [
+    ["fontFamily", "typography.body-small.fontFamily", "trust line — шрифт"]
+  ],
+  "p.lead": [
+    ["fontFamily", "typography.lead.fontFamily", "lead — шрифт"],
+    ["lineHeight", "typography.lead.lineHeight", "lead — межстрочный"]
+  ],
+  "h2": [
+    ["fontFamily", "typography.h2.fontFamily", "h2 — шрифт"],
+    ["fontSize", "typography.h2.fontSize", "h2 — размер"],
+    ["fontWeight", "typography.h2.fontWeight", "h2 — насыщенность"],
+    ["lineHeight", "typography.h2.lineHeight", "h2 — межстрочный"]
+  ],
   ".manifesto": [
     ["backgroundColor", "components.manifesto.backgroundColor", "manifesto — фон"]
+  ],
+  ".closing": [
+    ["fontFamily", "typography.closing.fontFamily", "closing — шрифт"],
+    ["fontSize", "typography.closing.fontSize", "closing — размер"],
+    ["lineHeight", "typography.closing.lineHeight", "closing — межстрочный"]
+  ],
+  ".notes": [
+    ["backgroundColor", "components.card-notes.backgroundColor", "notes — фон"],
+    ["borderRadius", "components.card-notes.rounded", "notes — скругление"]
   ]
 }
