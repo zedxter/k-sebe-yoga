@@ -64,7 +64,7 @@ def main():
     vars_map = parse_css_vars(css_path)
 
     # Define required color names for contrast checking
-    required_colors = ['primary', 'secondary', 'tertiary', 'neutral', 'surface', 'on_tertiary']
+    required_colors = ['color-primary', 'color-secondary', 'color-tertiary', 'color-neutral', 'color-surface', 'color-on-tertiary']
 
     colors = {}
     missing = []
@@ -81,11 +81,11 @@ def main():
         sys.exit(1)
 
     combos = [
-        ('primary','neutral','body text on page bg'),
-        ('primary','surface','body text on card bg'),
-        ('secondary','neutral','.meta on page bg'),
-        ('secondary','surface','.meta on card bg'),
-        ('tertiary','on_tertiary','button bg vs white text (decorative, 3:1 threshold)'),
+        ('color-primary','color-neutral','body text on page bg'),
+        ('color-primary','color-surface','body text on card bg'),
+        ('color-secondary','color-neutral','.meta on page bg'),
+        ('color-secondary','color-surface','.meta on card bg'),
+        ('color-tertiary','color-on-tertiary','button bg vs white text (decorative, 3:1 threshold)'),
     ]
 
     print(f"Reading colors from: {css_path}")
