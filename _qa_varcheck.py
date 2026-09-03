@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
+import os
+import sys
 import re
 
-with open('/home/danil/projects/k-sebe-yoga/design.css') as f:
+script_dir = os.path.dirname(os.path.abspath(__file__))
+css_path = sys.argv[1] if len(sys.argv) > 1 else os.path.join(script_dir, 'design.css')
+
+with open(css_path) as f:
     css = f.read()
 
 # Find all var(--...) references
@@ -22,6 +27,7 @@ print(f'  Used set:     {sorted(vars_used)}')
 
 if undefined:
     print(f'\n❌ UNDEFINED VAR() REFERENCES: {sorted(undefined)}')
+    sys.exit(1)
 else:
     print(f'\n✅ All var() references resolve to defined custom properties.')
 
