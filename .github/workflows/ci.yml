@@ -55,7 +55,7 @@ jobs:
         run: |
           set -euo pipefail
           # Find all .py files in the repo (excluding hidden dirs and design-evals if needed)
-          PY_FILES=$(find . -name '*.py' -not -path './.hermes/*' -not -path './__pycache__/*' | sort)
+          PY_FILES=$(find . -name '*.py' -not -path './.hermes/*' -not -path './__pycache__/*' -not -path './design-evals/*' | sort)
           if [ -z "$PY_FILES" ]; then
             echo "No .py files to check"
             exit 0
