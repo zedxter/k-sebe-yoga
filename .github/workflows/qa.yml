@@ -1,0 +1,30 @@
+name: QA (contrast & var check)
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: qa-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  qa-checks:
+    name: Contrast + var reference
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run WCAG contrast check
+        run: python _qa_contrast.py
+
+      - name: Run CSS var() reference check
+        run: python _qa_varcheck.py
