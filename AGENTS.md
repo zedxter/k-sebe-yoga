@@ -26,10 +26,18 @@ HTML/CSS served via GitHub Pages.
   change, create one before starting. Non-code Issues (docs, copy) can be opened
   and closed without a PR. Code changes must reference `Closes #...`/`Refs #...`.
 
-## 3. Copy rules
+## 3. Copy rules — TEXT FREEZE (ABSOLUTE)
 
-- The copy is the client's voice — do not paraphrase her text without asking.
-  Reviewers propose edits, the final word belongs to the owner.
+- **Yulia's original text is FROZEN.** No agent may change, paraphrase, rephrase,
+  or edit any word, emoji, punctuation, or speech pattern in the body copy
+  without Danil's explicit written approval. This is enforced by the owner.
+- **Allowed changes only:** meta tags in `<head>`, CSS/style changes, footer
+  links, new HTML sections that do not alter existing copy. Never touch the
+  body text itself.
+- **Any PR that modifies body copy text will be closed immediately** and the
+  branch deleted. This is not reviewable — it is a hard block.
+- The copy is the client's voice. Reviewers propose edits, the final word
+  belongs to Danil alone.
 - Dates/times/prices in the copy must match the brief exactly — do not invent
   or "fix" them from memory.
 
