@@ -1,0 +1,45 @@
+# k-sebe-yoga — Caddy configuration
+# Serves the static landing page with HTTPS, custom domain, and security headers.
+#
+# Usage:
+#   caddy run --config Caddyfile
+#
+# Adjust the domain and paths to match your server.
+
+k-sebe-yoga.com, www.k-sebe-yoga.com {
+    # Root directory for static files
+    root * /var/www/k-sebe-yoga
+
+    # Enable compression
+    encode gzip zstd
+
+    # Security headers
+    header {
+        # Prevent MIME type sniffing
+        X-Content-Type-Options "nosniff"
+        # Enable XSS filter in older browsers
+        X-XSS-Protection "1; mode=block"
+        # Prevent clickjacking
+        X-Frame-Options "DENY"
+        # Referrer policy
+        Referrer-Policy "strict-origin-when-cross-origin"
+        # CORS for design.css (allows CDN/font loading)
+        Access-Control-Allow-Origin "*"
+    }
+
+    # Handle static files
+    file_server
+
+    # Custom 404
+    handle_errors {
+        @404 {
+            expression {http.error.status_code} == 404
+        }
+        rewrite @404 /404.html
+    }
+
+    # Logs
+    log {
+        output file /var/log/caddy/k-sebe-yoga.log
+    }
+}

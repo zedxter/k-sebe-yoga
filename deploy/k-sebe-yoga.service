@@ -1,0 +1,30 @@
+# k-sebe-yoga — systemd service unit for Caddy
+# Place in /etc/systemd/system/k-sebe-yoga.service
+#
+# Usage:
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now k-sebe-yoga
+#   sudo systemctl status k-sebe-yoga
+
+[Unit]
+Description=k-sebe-yoga — Caddy static file server
+Documentation=https://github.com/zedxter/k-sebe-yoga
+After=network.target network-online.target
+Wants=network-online.target
+
+[Service]
+Type=notify
+User=caddy
+Group=caddy
+ExecStart=/usr/bin/caddy run --config /etc/caddy/sites/k-sebe-yoga/Caddyfile
+ExecReload=/usr/bin/caddy reload --config /etc/caddy/sites/k-sebe-yoga/Caddyfile
+TimeoutStopSec=5
+LimitNOFILE=1048576
+LimitNPROC=512
+PrivateTmp=true
+ProtectSystem=full
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+ReadWritePaths=/var/log/caddy
+
+[Install]
+WantedBy=multi-user.target
