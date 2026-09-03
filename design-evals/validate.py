@@ -5,11 +5,12 @@ Screenshots at desktop + mobile viewports plus computed CSS token validation.
 
 Usage:
   cd /home/danil/projects/k-sebe-yoga
-  python3 design-evals/validate.py
+  python3 design-evals/validate.py              # always exits 0 (artifacts mode)
+  python3 design-evals/validate.py --strict     # exits 1 if any token fails
 
 Exit codes: 0 = all pass, 1 = failures detected, 2 = error
 """
-import sys, os, json, re, pathlib, time
+import sys, os, json, re, pathlib, time, argparse
 import yaml
 from playwright.sync_api import sync_playwright
 
@@ -210,6 +211,15 @@ def take_screenshot(page, path):
 
 
 def run():
+    parser = argparse.ArgumentParser(
+        description="UI Pixel Validation against DESIGN.md"
+    )
+    parser.add_argument(
+        "--strict", action="store_true",
+        help="Exit 1 if any token check fails (blocks CI)"
+    )
+    args = parser.parse_args()
+
     design = parse_design_tokens(DESIGN_FILE)
     checks = json.loads(CHECKS_FILE.read_text(encoding="utf-8"))
 
@@ -268,8 +278,10 @@ def run():
     cert = "ДА" if grand_failures == 0 else "НЕТ"
     print(f"  CERTIFICATE: Соответствует DESIGN.md до пикселя: {cert}")
     print(f"{'='*72}\n")
-    print(f"[INFO] Screenshots always generated. Exiting 0 (artifacts uploaded to CI).")
-    print(f"[NOTE] Token failures ({grand_failures}) are reported above for reference.")
+    print(f"[INFO] Screenshots always generated (artifacts uploaded to CI).")
+    if args.strict and grand_failures > 0:
+        print(f"[FAIL] Strict mode: {grand_failures} failures detected — exiting 1.")
+        sys.exit(1)
     sys.exit(0)
 
 
