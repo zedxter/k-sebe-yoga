@@ -14,6 +14,8 @@ Wants=network-online.target
 
 [Service]
 Type=notify
+Restart=on-failure
+RestartSec=5s
 User=caddy
 Group=caddy
 ExecStart=/usr/bin/caddy run --config /etc/caddy/sites/k-sebe-yoga/Caddyfile

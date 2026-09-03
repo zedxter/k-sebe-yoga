@@ -50,10 +50,19 @@ sudo systemctl status k-sebe-yoga
 curl -I https://k-sebe-yoga.com
 ```
 
+## First-time backup
+
+Before the first deployment, there are no `.bak` files to restore from. On first deployment, manually create backups:
+
+```bash
+ssh root@your-server 'cp /etc/caddy/sites/k-sebe-yoga/Caddyfile{,.bak}'
+ssh root@your-server 'cp /etc/systemd/system/k-sebe-yoga.service{,.bak}'
+```
+
 ## Rollback
 
 ```bash
-# 1. Create backups before first deployment (if not already present)
+# 1. Create backups before rollback (if not already present)
 #    ssh root@your-server "cp /etc/caddy/sites/k-sebe-yoga/Caddyfile{,.bak}"
 #    ssh root@your-server "cp /etc/systemd/system/k-sebe-yoga.service{,.bak}"
 
@@ -96,4 +105,4 @@ tail -f /var/log/caddy/k-sebe-yoga.log  # Caddy access logs
 - TLS is handled automatically by Caddy (Let's Encrypt via ACME)
 - The `Caddyfile` assumes Caddy v2. If using v1, adjust the syntax
 - Custom domain setup requires DNS A/AAAA records pointing to the server
-- CORS header `Access-Control-Allow-Origin: *` is set on all assets, as required by `product-standards.md` for `design.css`
+- CORS header `Access-Control-Allow-Origin: https://k-sebe-yoga.com` is set on all assets, as required by `product-standards.md` for `design.css`

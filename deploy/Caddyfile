@@ -13,6 +13,11 @@ k-sebe-yoga.com, www.k-sebe-yoga.com {
     # Enable compression
     encode gzip zstd
 
+    # Force HTTPS — enable HSTS (1 year, include subdomains, and preload)
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    }
+
     # Security headers
     header {
         # Prevent MIME type sniffing
@@ -21,14 +26,12 @@ k-sebe-yoga.com, www.k-sebe-yoga.com {
         X-Frame-Options "DENY"
         # Referrer policy
         Referrer-Policy "strict-origin-when-cross-origin"
-        # Force HTTPS — enable HSTS (1 year, include subdomains)
-        Strict-Transport-Security "max-age=31536000; includeSubDomains"
         # Restrict resource loading and prevent XSS/CSS injection
         Content-Security-Policy "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; script-src 'none'; frame-ancestors 'none'"
         # Disable unused API features
         Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
         # CORS for design.css (allows CDN/font loading)
-        Access-Control-Allow-Origin "*"
+        Access-Control-Allow-Origin "https://k-sebe-yoga.com"
     }
 
     # Cache policy for static assets — far-future immutable cache
