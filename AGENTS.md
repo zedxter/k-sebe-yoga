@@ -28,7 +28,7 @@ HTML/CSS served via GitHub Pages.
 
 ## 3. Copy rules — TEXT FREEZE (ABSOLUTE)
 
-- **Yulia's original text is FROZEN.** No agent may change, paraphrase, rephrase,
+- **The client's original text is FROZEN.** No agent may change, paraphrase, rephrase,
   or edit any word, emoji, punctuation, or speech pattern in the body copy
   without Danil's explicit written approval. This is enforced by the owner.
 - **Allowed changes only:** meta tags in `<head>`, CSS/style changes, footer
