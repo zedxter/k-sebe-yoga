@@ -1,6 +1,6 @@
 # Product Standards — k-sebe-yoga
 
-> Owner: Yennefer (PO) + project owner. Version: 2026-08-31.
+> Owner: Yennefer (PO) + Yulia (project owner). Version: 2026-08-31.
 > Per-team rule (Danil, 25.08): every project documents its Product Standard at start.
 
 ## Mandatory core
@@ -9,7 +9,7 @@
 |------|-------|
 | **monetization** | `nonprofit` (Danil's decision, 25.08) |
 | **Success-axis / weights** | Top: **demand/response** (sign-ups, questions, feedback volume) + **path-to-action** (contact → attendance). Lower: **playbook** (role = community, not sandbox). Weights: demand 0.5, action 0.3, playbook 0.2 |
-| **Unit economics** | N/A — free community offering, not a sandbox. Acquisition cost = owner's time + ads if any; metric = cost-per-lead. No revenue model |
+| **Unit economics** | N/A — free community offering, not a sandbox. Acquisition cost = Yulia's time + ads if any; metric = cost-per-lead. No revenue model |
 | **North Star metric** | **participation/retention**: sign-ups → attendance → repeat attendance. "Came and came back." Threshold: ≥3 repeat attendances/month → "retained". TBD: numeric target after first session data |
 | **Quality gate** | Full spec→PR→review→CI cycle (team canon). Design per Lutik's rules (full figure, text-free images). Security when payments/user data are introduced |
 
@@ -32,14 +32,14 @@ Static landing: GitHub Pages auto-builds from `main`. CI workflow: `.github/work
 - **Audience**: Russian-speaking women, Potsdam/Berlin, 25–50
 - **Format**: outdoor (park) yoga, free, 1–2×/week (weekend morning)
 - **Content language**: Russian (landing + community comms)
-- **Contact channel**: Telegram (@Yulia_yoga_innere_balance)
+- **Contact channel**: Telegram (Yulia: @Yulia_yoga_innere_balance)
 - **Seasonality**: warm season (May–Sep). Winter: pause or indoor format
 
 ## Feedback loop
 
 | Channel | Status | Where |
 |---------|--------|-------|
-| Telegram DM | ✅ active | @Yulia_yoga_innere_balance — primary contact |
+| Telegram DM (Yulia) | ✅ active | @Yulia_yoga_innere_balance — primary contact |
 | Landing feedback form | 🔜 add in development | "I want to come / question / suggestion" |
 | Post-session verbal feedback | ✅ first session 30.08 | recorded in vault |
 

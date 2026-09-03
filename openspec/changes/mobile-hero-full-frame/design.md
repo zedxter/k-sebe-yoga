@@ -68,7 +68,7 @@ Desktop `.hero`/`.hero-copy` untouched (min-width 721px uses `hero-wide.jpg`).
 
 ## Risks / notes
 
-- Purely presentational; no content change.
+- Purely presentational; no content change (Julia's text verbatim).
 - Anchoring text to top is the well-understood "no overlap" mobile hero
   pattern; figure sits center (~35–80%) so top band stays clear.
 - The scroll-hint (⌄) stays absolute bottom — still fine over the vertical
