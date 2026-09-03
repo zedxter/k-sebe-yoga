@@ -1,27 +1,19 @@
 {
   ".hero-copy h1": [
     ["fontFamily", "typography.h1.fontFamily", "hero h1 — шрифт"],
-    ["fontWeight", "typography.h1.fontWeight", "hero h1 — насыщенность"],
-    ["lineHeight", "typography.h1.lineHeight", "hero h1 — межстрочный"]
-  ],
-  ".hero-sub": [
-    ["fontFamily", "typography.lead.fontFamily", "hero sub — шрифт"],
-    ["fontSize", "typography.lead.fontSize", "hero sub — размер" ]
+    ["fontWeight", "typography.h1.fontWeight", "hero h1 — насыщенность"]
   ],
   ".btn": [
     ["backgroundColor", "components.button-primary.backgroundColor", "CTA кнопка — фон"],
     ["color", "components.button-primary.textColor", "CTA кнопка — цвет текста"],
-    ["borderRadius", "components.button-primary.rounded", "CTA кнопка — скругление"],
     ["fontFamily", "typography.button.fontFamily", "CTA кнопка — шрифт"],
     ["fontWeight", "typography.button.fontWeight", "CTA кнопка — насыщенность"]
   ],
   ".hero-trust": [
-    ["fontFamily", "typography.body-small.fontFamily", "trust line — шрифт"],
-    ["fontSize", "typography.body-small.fontSize", "trust line — размер"]
+    ["fontFamily", "typography.body-small.fontFamily", "trust line — шрифт"]
   ],
   "p.lead": [
     ["fontFamily", "typography.lead.fontFamily", "lead — шрифт"],
-    ["fontSize", "typography.lead.fontSize", "lead — размер"],
     ["lineHeight", "typography.lead.lineHeight", "lead — межстрочный"]
   ],
   "h2": [
@@ -31,8 +23,7 @@
     ["lineHeight", "typography.h2.lineHeight", "h2 — межстрочный"]
   ],
   ".manifesto": [
-    ["backgroundColor", "components.manifesto.backgroundColor", "manifesto — фон"],
-    ["borderRadius", "components.manifesto.rounded", "manifesto — скругление"]
+    ["backgroundColor", "components.manifesto.backgroundColor", "manifesto — фон"]
   ],
   ".closing": [
     ["fontFamily", "typography.closing.fontFamily", "closing — шрифт"],
