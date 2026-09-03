@@ -194,6 +194,16 @@
     color:var(--muted);
     border-top:1px solid rgba(201,129,83,.2);
   }
+  footer a{
+    color:var(--ink);
+    text-decoration:underline;
+    text-underline-offset:0.18em;
+  }
+  footer a:hover{color:var(--accent);}
+  footer a:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
 
   /* ---------- Мобильная адаптивность ---------- */
   @media(max-width:720px){
@@ -291,7 +301,9 @@
 
 </main>
 
-<footer>Йога — «возвращение к себе» · Potsdam</footer>
+<footer>
+  Йога — «возвращение к себе» · Potsdam&nbsp;&nbsp;·&nbsp;&nbsp;<a href="impressum.html">Impressum</a>
+</footer>
 
 </body>
 </html>
