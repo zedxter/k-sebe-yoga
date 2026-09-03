@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -86,8 +86,16 @@
     color:var(--muted);
     border-top:1px solid rgba(201,129,83,.2);
   }
-  footer a{color:var(--muted);text-decoration:none;}
+  footer a{
+    color:var(--ink);
+    text-decoration:underline;
+    text-underline-offset:0.18em;
+  }
   footer a:hover{color:var(--accent);}
+  footer a:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
 
   @media(max-width:500px){
     main{padding:2rem 1.2rem 3rem;}
@@ -104,13 +112,19 @@
   <h2>Ответственное лицо</h2>
   <p>
     Юлия Галеева<br>
-    Potsdam, Германия
+    <span class="meta">«Юлия Галеева» — полное юридическое имя ответственного лица (vollständiger gesetzlicher Name) согласно §&nbsp;5 DDG.</span>
+  </p>
+  <p>
+    Dortustraße 15<br>
+    14467 Potsdam<br>
+    Deutschland
   </p>
 
   <h2>Контактные данные</h2>
   <p>
+    E-Mail: <a href="mailto:yulia.galeeva@gmail.com" style="color:var(--accent);">yulia.galeeva@gmail.com</a><br>
     Telegram: <a href="https://t.me/Yulia_yoga_innere_balance" style="color:var(--accent);">@Yulia_yoga_innere_balance</a><br>
-    <span class="meta">(основной канал связи)</span>
+    <span class="meta">Telegram — дополнительный канал прямой связи</span>
   </p>
 
   <h2>Юрисдикция</h2>
