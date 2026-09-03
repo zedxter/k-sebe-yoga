@@ -24,6 +24,14 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ github.job }}-py3.11
+          restore-keys: |
+            ${{ runner.os }}-pip-${{ github.job }}-
+
       - name: Run WCAG contrast check (reads CSS vars from design.css)
         run: python _qa_contrast.py design.css
 
