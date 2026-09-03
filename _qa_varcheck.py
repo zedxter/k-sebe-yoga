@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 import re
+import sys
 
-with open('/home/danil/projects/k-sebe-yoga/design.css') as f:
+with open('design.css') as f:
     css = f.read()
 
 # Find all var(--...) references
@@ -22,6 +23,7 @@ print(f'  Used set:     {sorted(vars_used)}')
 
 if undefined:
     print(f'\n❌ UNDEFINED VAR() REFERENCES: {sorted(undefined)}')
+    sys.exit(1)
 else:
     print(f'\n✅ All var() references resolve to defined custom properties.')
 
