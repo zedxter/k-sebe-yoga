@@ -220,7 +220,7 @@ a {
 }
 
 a:focus-visible {
-  outline: 2px solid var(--color-tertiary);
+  outline: 2px solid var(--color-secondary);
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -249,7 +249,7 @@ a:focus-visible {
 }
 
 .btn:focus-visible {
-  outline: 2px solid var(--color-on-tertiary);
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
   border-radius: var(--rounded-full);
 }
