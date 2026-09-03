@@ -19,8 +19,22 @@ k-sebe-yoga landing page via **Caddy** behind **systemd**.
 ## Quick Start
 
 ```bash
-# 1. Deploy site content
-rsync -avz --delete ./ root@your-server:/var/www/k-sebe-yoga/
+# 1. Deploy site content (exclude non-content files from repo root)
+rsync -avz --delete \
+  --exclude='deploy/' \
+  --exclude='.git/' \
+  --exclude='.github/' \
+  --exclude='.gitignore' \
+  --exclude='.hermes/' \
+  --exclude='openspec/' \
+  --exclude='research/' \
+  --exclude='AGENTS.md' \
+  --exclude='DESIGN.md' \
+  --exclude='README.md' \
+  --exclude='product-standards.md' \
+  --exclude='_qa_*' \
+  --exclude='qa-visual-test.html' \
+  ./ root@your-server:/var/www/k-sebe-yoga/
 
 # 2. Install Caddy config
 sudo mkdir -p /etc/caddy/sites/k-sebe-yoga
@@ -39,14 +53,32 @@ curl -I https://k-sebe-yoga.com
 ## Rollback
 
 ```bash
-# 1. Revert to previous content
-rsync -avz --delete ./ root@your-server:/var/www/k-sebe-yoga/
+# 1. Create backups before first deployment (if not already present)
+#    ssh root@your-server "cp /etc/caddy/sites/k-sebe-yoga/Caddyfile{,.bak}"
+#    ssh root@your-server "cp /etc/systemd/system/k-sebe-yoga.service{,.bak}"
 
-# 2. If Caddy config changed, restore previous version
+# 2. Revert to previous content
+rsync -avz --delete \
+  --exclude='deploy/' \
+  --exclude='.git/' \
+  --exclude='.github/' \
+  --exclude='.gitignore' \
+  --exclude='.hermes/' \
+  --exclude='openspec/' \
+  --exclude='research/' \
+  --exclude='AGENTS.md' \
+  --exclude='DESIGN.md' \
+  --exclude='README.md' \
+  --exclude='product-standards.md' \
+  --exclude='_qa_*' \
+  --exclude='qa-visual-test.html' \
+  ./ root@your-server:/var/www/k-sebe-yoga/
+
+# 3. If Caddy config changed, restore previous version
 sudo cp deploy/Caddyfile.bak /etc/caddy/sites/k-sebe-yoga/Caddyfile
 sudo systemctl reload k-sebe-yoga
 
-# 3. If systemd unit changed
+# 4. If systemd unit changed
 sudo cp deploy/k-sebe-yoga.service.bak /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl restart k-sebe-yoga

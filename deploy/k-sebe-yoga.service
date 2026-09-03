@@ -18,12 +18,15 @@ User=caddy
 Group=caddy
 ExecStart=/usr/bin/caddy run --config /etc/caddy/sites/k-sebe-yoga/Caddyfile
 ExecReload=/usr/bin/caddy reload --config /etc/caddy/sites/k-sebe-yoga/Caddyfile
-TimeoutStopSec=5
-LimitNOFILE=1048576
+TimeoutStopSec=90
+LimitNOFILE=65536
 LimitNPROC=512
 PrivateTmp=true
 ProtectSystem=full
+NoNewPrivileges=true
+ProtectHome=true
 AmbientCapabilities=CAP_NET_BIND_SERVICE
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE
 ReadWritePaths=/var/log/caddy
 
 [Install]
