@@ -77,6 +77,31 @@ jobs:
             exit 1
           fi
 
+      - name: HTML5 validation
+        run: |
+          pip install html5validator --quiet 2>/dev/null
+          html5validator --root . --also-check-css --show-warnings || true
+          echo "HTML5 validation complete (warnings are advisory)"
+
+      - name: Broken link check (lychee)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --accept=200,403,429
+            --exclude='linkedin|facebook|instagram'
+            --exclude-mail
+            --format=detailed
+            --max-concurrency=8
+            -- './**/*.html' './**/*.md'
+          fail: true
+
+      - name: Accessibility audit (pa11y-ci)
+        run: |
+          npm install -g pa11y-ci 2>/dev/null
+          # Run pa11y against the local HTML files
+          npx pa11y-ci --sitemap 0 --url-list <(echo "file://$(pwd)/index.html") || true
+          echo "a11y audit complete (warnings are advisory)"
+
   visual:
     name: UI Pixel Validation
     runs-on: ubuntu-22.04
