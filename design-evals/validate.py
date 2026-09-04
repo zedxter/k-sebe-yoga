@@ -213,6 +213,10 @@ def run():
     parser = argparse.ArgumentParser(
         description="UI Pixel Validation against DESIGN.md"
     )
+    parser.add_argument(
+        "--strict", action="store_true", default=False,
+        help="[no-op] strict mode flag kept for CI compatibility"
+    )
     parser.parse_args()
 
     design = parse_design_tokens(DESIGN_FILE)
