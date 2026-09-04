@@ -1,6 +1,12 @@
 # Generated screenshots from ui-pixel-validation
 design-evals/screenshots/
 current.png
+# Unused legacy cover images (removed in #57)
+cover.*
+cover-v2.*
+cover-desktop.*
+cover-mobile.*
+cover-tablet.*
 
 # Other worktrees / repos inside checkout
 privacy-notice-46-clean
