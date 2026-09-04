@@ -51,6 +51,22 @@ jobs:
             echo "css asset OK: $f"
           done < /tmp/cssrefs.txt
 
+      - name: HTML5 Validator
+        run: |
+          pip install html5validator --quiet 2>/dev/null
+          html5validator --root . --also-check-css --show-warnings || true
+
+      - name: Lychee Link Checker
+        uses: lycheeverse/lychee-action@v2
+        with:
+          fail: true
+          args: "--verbose --no-progress --exclude-mail -- ./**/*.html ./**/*.css ./**/*.md"
+
+      - name: Pa11y CI Accessibility Audit
+        run: |
+          npm install -g pa11y-ci 2>/dev/null
+          pa11y-ci --config '{"defaults":{"viewport":{"width":1440,"height":900},"timeout":30000,"includeWarnings":true,"includeNotices":false},"urls":["http://localhost:8080/index.html"]}' || true
+
       - name: Check Python imports (pylint)
         run: |
           set -euo pipefail
