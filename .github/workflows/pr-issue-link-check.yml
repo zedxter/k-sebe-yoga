@@ -17,12 +17,12 @@ jobs:
           set +e
 
           # Check body first, then fall back to title
-          if echo "$PR_BODY" | grep -qiE '(Closes|Refs|Partially addresses) #[0-9]+'; then
+          if echo "$PR_BODY" | grep -qiE '(Closes|Fixes|Resolves) #[0-9]+'; then
             echo "✅ PR #$PR_NUMBER has Issue reference in body."
             exit 0
           fi
 
-          if echo "$PR_TITLE" | grep -qiE '(Closes|Refs|Partially addresses) #[0-9]+'; then
+          if echo "$PR_TITLE" | grep -qiE '(Closes|Fixes|Resolves) #[0-9]+'; then
             echo "⚠️  PR #$PR_NUMBER has Issue reference only in title, not in body."
             echo "Please move the reference to the PR description body so GitHub can auto-close the Issue on merge."
             exit 1
@@ -31,9 +31,9 @@ jobs:
           echo "❌ PR #$PR_NUMBER is missing an Issue reference."
           echo ""
           echo "Every PR MUST reference its Issue in the description body:"
-          echo "  Closes #N              — when this PR fully resolves the Issue"
-          echo "  Refs #N                — when this PR is related to an Issue"
-          echo "  Partially addresses #N — when this PR makes progress but doesn't fully resolve"
+          echo "  Closes #N   — when this PR fully resolves the Issue"
+          echo "  Fixes #N    — when this PR fully resolves the Issue (alias)"
+          echo "  Resolves #N — when this PR fully resolves the Issue (alias)"
           echo ""
           echo "Please edit the PR description to add one of these lines."
           exit 1
