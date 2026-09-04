@@ -30,7 +30,7 @@ jobs:
           # Collect local (non-URL, non-anchor) src/href targets from index.html
           grep -oE '(src|href)="[^"]+"' index.html \
             | sed -E 's/^(src|href)="([^"]+)"/\2/' \
-            | grep -vE '^(https?://|#|mailto:)' \
+            | grep -vE '^(https?://|#|mailto:|data:)' \
             | sort -u > /tmp/refs.txt || true
           if [ ! -s /tmp/refs.txt ]; then echo "no local asset refs"; exit 0; fi
           while IFS= read -r f; do
