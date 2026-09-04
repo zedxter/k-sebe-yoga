@@ -279,8 +279,8 @@ def run():
     print(f"  CERTIFICATE: Соответствует DESIGN.md до пикселя: {cert}")
     print(f"{'='*72}\n")
     print(f"[INFO] Screenshots always generated (artifacts uploaded to CI).")
-    if args.strict and grand_failures > 0:
-        print(f"[FAIL] Strict mode: {grand_failures} failures detected — exiting 1.")
+    if grand_failures > 0:
+        print(f"[FAIL] {grand_failures} failures detected — exiting 1.")
         sys.exit(1)
     sys.exit(0)
 
