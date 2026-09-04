@@ -18,9 +18,10 @@ Single-page static site: plain HTML + CSS, no backend.
 ## Structure
 ```
 k-sebe-yoga/
-├── index.html   ← the landing (cover hero + Russian copy + t.me CTA)
-├── cover.jpg    ← hero cover image
-└── README.md    ← this file
+├── index.html      ← the landing (hero + Russian copy + t.me CTA)
+├── hero-wide.jpg   ← hero cover (desktop, ≥721px)
+├── hero-mobile.jpg ← hero cover (mobile, ≤720px)
+└── README.md       ← this file
 ```
 
 ## What it should feel like
