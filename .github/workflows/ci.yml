@@ -60,7 +60,7 @@ jobs:
             echo "No .py files to check"
             exit 0
           fi
-          pip install pylint --quiet 2>/dev/null
+          # pylint is installed system-wide (via apt)
           # Run pylint once and keep only import-related messages (clean output).
           import_errors="$(
             python -m pylint \
