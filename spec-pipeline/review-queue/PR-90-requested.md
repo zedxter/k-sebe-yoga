@@ -1,0 +1,2 @@
+fix_pending_sha: 2446583
+geralt_verdict_head: "a5b48d49efff828a21ef63a2f8fff56d1e36834f"
