@@ -53,7 +53,7 @@ jobs:
 
       - name: HTML5 Validator
         run: |
-          pip install html5validator --quiet 2>/dev/null
+          pip install --break-system-packages html5validator --quiet 2>/dev/null
           html5validator --root . --also-check-css --show-warnings || true
 
       - name: Lychee Link Checker
