@@ -86,29 +86,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
-      - name: Setup Python
-        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
-        with:
-          python-version: "3.11"
-
-      - name: Cache pip
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ github.job }}-py3.11
-          restore-keys: |
-            ${{ runner.os }}-pip-${{ github.job }}-
-
       - name: Install dependencies
         run: |
-          pip install pip --upgrade
-          pip install pyyaml playwright
+          python3 -m pip install --break-system-packages pyyaml playwright
 
       - name: Install Chromium (Playwright)
-        run: python -m playwright install chromium
+        run: python3 -m playwright install chromium
 
       - name: Run UI pixel validation (screenshots + token check)
-        run: python design-evals/validate.py --strict
+        run: python3 design-evals/validate.py --strict
 
       - name: Upload screenshots
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
