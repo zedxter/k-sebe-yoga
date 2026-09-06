@@ -1,0 +1,46 @@
+name: Branch Guard — PR-only main
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      statuses: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+
+      - name: Check if push came from a PR merge
+        id: check
+        run: |
+          # If HEAD's message starts with "Merge pull request #" or
+          # "Merge branch '...'" into main, it's a PR merge — allowed.
+          # Otherwise, flag as direct push.
+          MERGE_MSG=$(git log -1 --format="%s" HEAD)
+          echo "Commit message: $MERGE_MSG"
+
+          if echo "$MERGE_MSG" | grep -qE "^Merge pull request #|^Merge branch "; then
+            echo "status=pass" >> "$GITHUB_OUTPUT"
+            echo "✅ PR merge — allowed"
+          else
+            echo "status=fail" >> "$GITHUB_OUTPUT"
+            echo "❌ DIRECT PUSH DETECTED — all changes must go through PRs"
+          fi
+
+      - name: Mark status (fail on direct push)
+        if: steps.check.outputs.status == 'fail'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: context.sha,
+              state: 'failure',
+              context: 'Branch Guard (PR-only)',
+              description: 'Direct push to main blocked — use PRs only'
+            });
