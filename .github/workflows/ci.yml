@@ -12,7 +12,7 @@ concurrency:
 jobs:
   static:
     name: Static check
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:
@@ -54,13 +54,14 @@ jobs:
       - name: Check Python imports (pylint)
         run: |
           set -euo pipefail
+          pip install pylint --quiet 2>/dev/null
           # Find all .py files in the repo (excluding hidden dirs and design-evals if needed)
           PY_FILES=$(find . -name '*.py' -not -path './.hermes/*' -not -path './__pycache__/*' -not -path './design-evals/*' | sort)
           if [ -z "$PY_FILES" ]; then
             echo "No .py files to check"
             exit 0
           fi
-          # pylint is installed system-wide (via apt)
+          # pylint is installed via pip (ubuntu-latest doesn't ship it)
           # Run pylint once and keep only import-related messages (clean output).
           import_errors="$(
             python -m pylint \
@@ -79,7 +80,7 @@ jobs:
 
   visual:
     name: UI Pixel Validation
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:
@@ -88,7 +89,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python3 -m pip install --break-system-packages pyyaml playwright
+          python3 -m pip install pyyaml playwright
 
       - name: Install Chromium (Playwright)
         run: python3 -m playwright install chromium

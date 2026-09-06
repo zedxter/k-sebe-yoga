@@ -12,7 +12,7 @@ concurrency:
 jobs:
   qa-checks:
     name: Contrast + var reference
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:
