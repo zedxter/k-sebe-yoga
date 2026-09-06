@@ -54,7 +54,7 @@ jobs:
       - name: Check Python imports (pylint)
         run: |
           set -euo pipefail
-          pip install pylint --quiet 2>/dev/null
+          pip install pylint --quiet --break-system-packages 2>/dev/null
           # Find all .py files in the repo (excluding hidden dirs and design-evals if needed)
           PY_FILES=$(find . -name '*.py' -not -path './.hermes/*' -not -path './__pycache__/*' -not -path './design-evals/*' | sort)
           if [ -z "$PY_FILES" ]; then
@@ -89,7 +89,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python3 -m pip install pyyaml playwright
+          python3 -m pip install --break-system-packages pyyaml playwright
 
       - name: Install Chromium (Playwright)
         run: python3 -m playwright install chromium
