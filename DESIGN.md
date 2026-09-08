@@ -221,3 +221,89 @@ K-Sebe-Yoga — одностраничный лендинг для беспла�
 
 ### 6. CenterCrutch (base)
 Всё выровнено по центру — нет иерархии, трудно сканировать. В k-sebe-yoga: hero-текст прижат вправо (асимметричная композиция с фигурой слева). Секции ниже — центрированы осознанно (тихий тон).
+
+## Accessibility
+
+### 1. Skip-to-content link
+
+**Назначение:** Клавиатурные пользователи (Tab-навигация) должны иметь возможность пропустить hero-секцию (~72vh с фоновым изображением и навигацией) и сразу перейти к основному контенту.
+
+**Требования к реализации:**
+
+- Skip-ссылка размещается ПЕРВЫМ фокусируемым элементом в `<body>`, перед hero-секцией.
+- По умолчанию (`:not(:focus)`) — скрыта визуально, но доступна скринридерам через `.sr-only`-подобное позиционирование.
+- При получении фокуса (`:focus`) — появляется в верхней части страницы, центрированная по горизонтали.
+- Целевой якорь: `<main id="main-content">` (добавить `id` к существующему `<main>`).
+- Текст ссылки: «К содержанию» (для русскоязычной аудитории).
+
+**Стилизация:**
+
+| Свойство | Значение | Примечание |
+|---|---|---|
+| `position` | `absolute` | Выход из потока |
+| `top` / `left` / `transform` | `0` / `50%` / `translateX(-50%)` | Центрирование по горизонтали |
+| `z-index` | `1000` | Поверх hero |
+| `background` | `{colors.primary}` (`#3D2F28`) | Контрастный тёмный фон |
+| `text-color` | `{colors.on-primary}` (`#FFF8EF`) | Бежевый текст |
+| `font-family` | `{typography.body-md.fontFamily}` (Inter) | Совпадает с основным текстом |
+| `font-size` | `0.92rem` | `{typography.body-small.fontSize}` |
+| `padding` | `8px 16px` | Компактно |
+| `border-radius` | `{rounded.sm}` (4px) | Лёгкое скругление |
+| `outline` | `none` | Убираем браузерный outline (фон заменяет) |
+
+**Состояния:**
+- `:not(:focus)`: `left: -9999px;` (стандартный `.sr-only` паттерн — элемент в DOM, невидим экранно, доступен скринридерам).
+- `:focus`: все стили из таблицы выше — ссылка видна.
+
+**Референс:** Тот же паттерн, что в eu-listing-writer (`shell.css` / `landing.css`) и marketradar (`design.css`).
+
+### 2. prefers-reduced-motion support
+
+**Назначение:** Пользователи, включившие `prefers-reduced-motion: reduce` в ОС, не должны получать нежелательные анимации (плавный скролл, пульсирующие элементы). Движение должно быть отключено или минимизировано.
+
+**Требования к реализации:**
+
+Добавить блок `@media (prefers-reduced-motion: reduce)` в `design.css` (и в inline-стили `<style>` в `index.html`). В блоке:
+
+| CSS-правило | Что переопределяется | Эффект |
+|---|---|---|
+| `html { scroll-behavior: auto; }` | `scroll-behavior: smooth` | Отключает плавный скролл |
+| `*, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }` | Все `transition` и `animation` | Мгновенные переходы |
+| `.scroll-hint { display: none; }` | Анимация `scrollbob` | Полностью скрывает декоративный элемент |
+
+**Принцип:** не выключаем анимации для всего сайта — они часть визуального языка. Но когда пользователь явно запросил reduce-motion, мы уважаем его выбор глобальным правилом.
+
+**Порядок в CSS:**
+1. Normal rules
+2. `@media (prefers-reduced-motion: reduce)` — сразу после базового reset, до компонентов.
+3. Если появляется inline `<style>` в `index.html` — блок дублируется.
+
+### 3. Focus-visible (verification)
+
+**Назначение:** Убедиться, что все интерактивные элементы имеют видимый фокус.
+
+**Текущий статус:**
+
+| Элемент | Статус | Стиль |
+|---|---|---|
+| `a` (текстовые ссылки) | ✅ Есть | `outline: 2px solid var(--color-secondary)`, `outline-offset: 2px`, `border-radius: 2px` |
+| `.btn` (CTA-кнопка) | ✅ Есть | `outline: 2px solid var(--color-primary)`, `outline-offset: 2px`, `border-radius: var(--rounded-full)` |
+| `.btn` внутри hero (inline) | ✅ Есть | `outline: 2px solid var(--white)`, `outline-offset: 2px`, `border-radius: 999px` |
+| skip-link (:focus) | 🔲 Добавить | См. секцию 1 выше |
+
+**Рекомендация:** существующие `focus-visible` стили корректны. Добавить аналогичный стиль для `.skip-link:focus` в блок skip-link.
+
+### Do's and Don'ts (дополнения)
+
+#### Do
+
+- **Do** добавлять `id="main-content"` к `<main>` — целевой якорь для skip-ссылки.
+- **Do** размещать skip-ссылку ПЕРВЫМ фокусируемым элементом в `<body>`.
+- **Do** использовать `@media (prefers-reduced-motion: reduce)` для отключения анимаций по запросу пользователя.
+- **Do** проверять, что все интерактивные элементы имеют видимый `focus-visible`.
+
+#### Don't
+
+- **Don't** полагаться только на браузерный outline по умолчанию (он не гарантирует достаточный контраст на всех фонах).
+- **Don't** скрывать skip-ссылку через `display: none` или `visibility: hidden` (недоступна скринридерам) — использовать `position: absolute; left: -9999px`.
+- **Don't** добавлять анимации без `prefers-reduced-motion` медиа-блока.
