@@ -1,6 +1,44 @@
+# Dependencies
+node_modules/
+dist/
+build/
+
+# Environment
+.env
+.env.local
+.env.*.local
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
 # Generated screenshots from ui-pixel-validation
 design-evals/screenshots/
 current.png
 
 # Other worktrees / repos inside checkout
 privacy-notice-46-clean
+
+# Local audit artifacts
+doc-audit-result.json
+
+# Worktrees
+.worktrees/
+
+# Temp / backup
+*.bak
+*.tmp
+*.temp
