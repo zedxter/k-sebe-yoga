@@ -27,5 +27,22 @@ k-sebe-yoga/
 ## What it should feel like
 Warm, from the heart, not a corporate fitness page. First screen: cover image + a short invitation to come breathe together, outside, in Potsdam.
 
+## Security
+
+Security headers are enforced at two levels:
+
+1. **Caddy HTTP headers** (production server `k-sebe-yoga.com`):
+   - `Strict-Transport-Security`: 1 year, include subdomains, preload
+   - `Content-Security-Policy`: restricts resources to self, no scripts
+   - `X-Frame-Options: DENY`: prevents clickjacking
+   - `X-Content-Type-Options: nosniff`: prevents MIME sniffing
+   - `Referrer-Policy: strict-origin-when-cross-origin`
+   - `Permissions-Policy`: disables camera, microphone, geolocation
+   - See `deploy/Caddyfile` for the full configuration
+
+2. **CSP meta tag**: Added to both `index.html` and `impressum.html` as defense-in-depth, so Content-Security-Policy applies even when the page is served without custom HTTP headers (e.g., via GitHub Pages).
+
+HSTS cannot be set via a meta tag — it is enforced exclusively via the Caddy HTTP header.
+
 ## Links
 - GitHub: https://github.com/zedxter/k-sebe-yoga
