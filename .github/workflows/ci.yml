@@ -17,7 +17,7 @@ jobs:
       contents: read
     steps:
       - name: Checkout repository
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        uses: actions/checkout@v6
 
       - name: Check required files exist
         run: |
@@ -84,11 +84,11 @@ jobs:
       contents: read
     steps:
       - name: Checkout repository
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        uses: actions/checkout@v6
 
       - name: Install dependencies
         run: |
-          python3 -m pip install --break-system-packages pyyaml playwright
+          python3 -m pip install --user pyyaml playwright || python3 -m pip install pyyaml playwright
 
       - name: Install Chromium (Playwright)
         run: python3 -m playwright install chromium
